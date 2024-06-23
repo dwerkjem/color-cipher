@@ -1,1 +1,8 @@
-/.vscode
+# editor files
+.vscode
+
+# Bytecode files
+*__pycache__
+
+# virtual environment files
+/venv
