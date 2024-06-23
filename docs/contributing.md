@@ -14,7 +14,6 @@ First and foremost, thank you for considering contributing to color-cipher. Your
     - [Code Formatting](#code-formatting)
     - [Character Capitalization and Naming Conventions](#character-capitalization-and-naming-conventions)
     - [Commit Messages](#commit-messages)
-  - [Testing and Code Coverage](#testing-and-code-coverage)
   - [Getting Help](#getting-help)
 
 ## How to Contribute
@@ -143,26 +142,6 @@ feat: add user authentication module
 
 - Implemented user login and registration
 - Added JWT-based authentication
-```
-
-## Testing and Code Coverage
-
-We use [pytest](https://pytest.org/) for testing. Ensure that your code changes do not break any tests and add new tests where applicable.
-
-To run the tests:
-
-```bash
-pytest
-```
-
-To check code coverage, we use [coverage.py](https://coverage.readthedocs.io/). Ensure that new code is covered by tests and aim for at least 70% code coverage.
-
-To check the code coverage:
-
-```bash
-coverage run -m pytest
-coverage report
-coverage html  # Generates an HTML report
 ```
 
 ## Getting Help
