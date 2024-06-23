@@ -16,29 +16,44 @@ example key '2K54332221'
 
 ## Usage
 
+### Installation
+
+To run the program, you will need to install the required dependencies. You can use Docker, pyvenv, or Poetry to set up the environment. docker is recommended for running the program.
+
+#### Docker (Recommended)
+
+To run the program using Docker, you can build the Docker image and run the container.
+
+```bash
+docker build -t color-cipher .
+docker run -it color-cipher
+```
+
+#### pyvenv
+
+To run the program using a Python virtual environment, you can create a virtual environment and install the required packages.
+
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+#### poetry
+
+To run the program using Poetry, you can install the dependencies using Poetry.
+
+```bash
+poetry install
+```
+
 ### Encryption
 
-To encrypt a text, you will need to provide the key and the text to be encrypted.
-
-```python
-# Example code for encryption
-key = '2K54332221'
-text = 'Hello, World!'
-encrypted_text = encrypt(text, key)
-print(encrypted_text)
-```
+TODO: Add instructions for encryption and decryption.
 
 ### Decryption
 
-To decrypt a text, you will need to provide the same key used for encryption and the encrypted text.
-
-```python
-# Example code for decryption
-key = '2K54332221'
-encrypted_text = '...'  # the encrypted text
-decrypted_text = decrypt(encrypted_text, key)
-print(decrypted_text)
-```
+TODO: Add instructions for encryption and decryption.
 
 ## Documentation
 
