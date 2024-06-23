@@ -49,11 +49,7 @@ poetry install
 
 ### Encryption
 
-TODO: Add instructions for encryption and decryption.
-
 ### Decryption
-
-TODO: Add instructions for encryption and decryption.
 
 ## Documentation
 
