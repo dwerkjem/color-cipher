@@ -14,7 +14,7 @@ if [ -d "venv" ]
 then
     echo "venv directory already exists"
     while true; do
-        read -p "Do you want to activate the virtual environment? (y/n): " activate_venv
+        read -r -p "Do you want to activate the virtual environment? (y/n): " activate_venv
         case $activate_venv in
             [Yy]* ) source venv/bin/activate; break;;
             [Nn]* ) echo "Exiting without activating the virtual environment."; exit;;
@@ -32,7 +32,7 @@ source venv/bin/activate
 
 # Ask user if they want to install the requirements
 while true; do
-    read -p "Do you want to install the requirements? (y/n): " install_requirements
+    read -r -p "Do you want to install the requirements? (y/n): " install_requirements
     case $install_requirements in
         [Yy]* ) pip install -r requirements.txt; break;;
         [Nn]* ) echo "Requirements not installed."; break;;
