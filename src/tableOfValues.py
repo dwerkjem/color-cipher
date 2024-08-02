@@ -1,5 +1,5 @@
 # list of values that can be used in the encoding and decoding process 128 values
-values_list_A = [
+values_list = [
     " ",
     "1",
     "2",
@@ -48,17 +48,10 @@ values_list_A = [
     "END OF SYMBOL",
 ]
 
-values_list_C = [
-    "RED",
-    "GREEN",
-    "BLUE",
-    "ALPHA",
-]
+def get_values_list():
+    return values_list
 
-def get_values_list_A():
-    return values_list_A
-
-freq_dict_A = {
+freq_dict = {
     "a": 123287,
     "b": 24227,
     "c": 50211,
@@ -107,5 +100,5 @@ freq_dict_A = {
     "END OF SYMBOL": 105362,
 }
 
-def get_freq_dict_A():
-    return freq_dict_A
+def get_freq_dict():
+    return freq_dict
