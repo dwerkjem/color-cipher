@@ -1,10 +1,24 @@
 # Method
 
+## Key
+
+- [Method](#method)
+  - [Key](#key)
+  - [Character Frequency Distribution](#character-frequency-distribution)
+    - [Obtaining the Data](#obtaining-the-data)
+    - [Processing the Data](#processing-the-data)
+    - [Results](#results)
+    - [Notes About the Data](#notes-about-the-data)
+  - [Color Cipher Algorithms](#color-cipher-algorithms)
+    - [Type 1U](#type-1u)
+      - [Description Of 1U](#description-of-1u)
+    - [Example](#example)
+
 ## Character Frequency Distribution
 
 ### Obtaining the Data
 
-The data was obtained from the [Fitaly](http://www.fitaly.com/board/domper3/posts/136.html) website. The data was copied and pasted into a text file. The text file was then read into a Python script and processed to obtain the character frequency distribution
+The data was obtained from the [Fitaly](http://www.fitaly.com/board/domper3/posts/136.html) website. The data was copied and pasted into a text file. The text file was then read into a Python script and processed to obtain the character frequency distribution.
 
 ### Processing the Data
 
@@ -178,6 +192,101 @@ The bar graph and pie chart show the character frequency distribution of the tex
 
 ### Notes About the Data
 
-special characters such as punctuation marks and digits are aggregated into the symbol start and end characters. a full stop is represented by an empty symbol.
+Special characters such as punctuation marks and digits are aggregated into the symbol start and end characters. A full stop is represented by an empty symbol.
 
-## Color Cipher Algorithm
+## Color Cipher Algorithms
+
+### Type 1U
+
+#### Description Of 1U
+
+The Type 1U color cipher algorithm encodes data into an image by having each color (red, green, blue channels) represent a different character. The algorithm works by mapping each character to a set of colors. The number of colors per character is determined by the formula:
+
+The formula distributes a list of \( N \) objects along a line of length \( L \) such that each object appears with its specified frequency \( N_{\text{subF}} \), and the total number of points along the line equals \( L \).
+
+1. **Define the Variables:**
+   - \( N \): Total number of distinct objects.
+   - \( N_{\text{subF}} \): A list of frequencies for each object, where \( N_{\text{subF}}[i] \) is the frequency of the \( i \)-th object.
+   - \( L \): Total length of the line.
+
+2. **Sum of Frequencies:**
+
+   \[
+   \text{SumF} = \sum_{i=1}^{N} N_{\text{subF}}[i]
+   \]
+
+3. **Normalized Length for Each Object:**
+
+   \[
+   L_{\text{subF}}[i] = \left( \frac{N_{\text{subF}}[i]}{\text{SumF}} \right) \times L
+   \]
+
+   This represents the segment of the line \( L \) that each object \( i \) occupies based on its frequency.
+
+4. **Distribute Points Along the Line:**
+
+   \[
+   \text{interval}_i = \frac{L}{N_{\text{subF}}[i]}
+   \]
+
+   \[
+   \text{position}_i[j] = \left\lfloor j \times \text{interval}_i \right\rfloor \quad \text{for } j \in \{0, 1, \ldots, N_{\text{subF}}[i] - 1\}
+   \]
+
+   This ensures that the points are distributed evenly along the line.
+
+### Example
+
+For \( N = 3 \), \( N_{\text{subF}} = [2, 3, 5] \), and \( L = 10 \), the output will be a list of length \( L \) with the objects distributed more evenly according to their frequencies:
+
+\[
+\text{SumF} = 2 + 3 + 5 = 10
+\]
+
+\[
+L_{\text{subF}}[0] = \left( \frac{2}{10} \right) \times 10 = 2
+\]
+
+\[
+L_{\text{subF}}[1] = \left( \frac{3}{10} \right) \times 10 = 3
+\]
+
+\[
+L_{\text{subF}}[2] = \left( \frac{5}{10} \right) \times 10 = 5
+\]
+
+The intervals for placing the objects would be calculated as follows:
+
+\[
+\text{interval}_0 = \frac{10}{2} = 5
+\]
+
+\[
+\text{interval}_1 = \frac{10}{3} \approx 3.33
+\]
+
+\[
+\text{interval}_2 = \frac{10}{5} = 2
+\]
+
+This results in the following distribution:
+
+\[
+\text{position}_0 = [0, 5]
+\]
+
+\[
+\text{position}_1 = [0, 3, 6]
+\]
+
+\[
+\text{position}_2 = [0, 2, 4, 6, 8]
+\]
+
+Mapping these positions onto the line, we get:
+
+\[
+\text{line} = [0, 2, 1, 2, 2, 0, 1, 2, 2, 1]
+\]
+
+This method ensures that the points are more evenly spread along the line \( L \).
