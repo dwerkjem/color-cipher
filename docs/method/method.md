@@ -12,6 +12,7 @@
   - [Color Cipher Algorithms](#color-cipher-algorithms)
     - [Type 1U](#type-1u)
       - [Description Of 1U](#description-of-1u)
+      - [1U Formula](#1u-formula)
     - [Example](#example)
 
 ## Character Frequency Distribution
@@ -200,8 +201,9 @@ Special characters such as punctuation marks and digits are aggregated into the 
 
 #### Description Of 1U
 
-The Type 1U color cipher algorithm encodes data into an image by having each color (red, green, blue channels) represent a different character. The algorithm works by mapping each character to a set of colors. The number of colors per character is determined by the formula:
+The Type 1U color cipher algorithm encodes data into an image by having each color (red, green, blue channels) represent a different character. The algorithm works by mapping each character to a set of colors. The colors are then distributed along a line based on the frequency of the characters. The algorithm ensures that the colors are evenly distributed along the line based on the frequency of the characters. This ensures that the Frequently Occurring Characters (FOCs) have more colors assigned to them, making the
 
+#### 1U Formula
 The formula distributes a list of \( N \) objects along a line of length \( L \) such that each object appears with its specified frequency \( N_{\text{subF}} \), and the total number of points along the line equals \( L \).
 
 1. **Define the Variables:**
