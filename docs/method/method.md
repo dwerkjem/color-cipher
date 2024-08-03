@@ -213,52 +213,52 @@ The formula distributes a list of $N$ objects along a line of length $L$ such th
 
 2. **Sum of Frequencies:**
 
-   $$\text{SumF} = \sum_{i=1}^{N} N_{\text{subF}}[i]$$
+   $\text{SumF} = \sum_{i=1}^{N} N_{\text{subF}}[i]$
 
 3. **Normalized Length for Each Object:**
 
-   $$L_{\text{subF}}[i] = \left( \frac{N_{\text{subF}}[i]}{\text{SumF}} \right) \times L$$
+   $L_{\text{subF}}[i] = \left( \frac{N_{\text{subF}}[i]}{\text{SumF}} \right) \times L$
 
    This represents the segment of the line $L$ that each object $i$ occupies based on its frequency.
 
 4. **Distribute Points Along the Line:**
 
-   $$\text{interval}_i = \frac{L}{N_{\text{subF}}[i]}$$
+   $\text{interval}_i = \frac{L}{N_{\text{subF}}[i]}$
 
-   $$\text{position}_i[j] = \left\lfloor j \times \text{interval}_i \right\rfloor \quad \text{for } j \in \{0, 1, \ldots, N_{\text{subF}}[i] - 1\}$$
+   $\text{position}_i[j] = \left\lfloor j \times \text{interval}_i \right\rfloor \quad \text{for } j \in \{0, 1, \ldots, N_{\text{subF}}[i] - 1\}$
 
    This ensures that the points are distributed evenly along the line.
 
 ### Example
 
-For $N = 3$, $N_{\text{subF}} = [2, 3, 5] $, and $L = 10$, the output will be a list of length $L$ with the objects distributed more evenly according to their frequencies:
+For $N = 3$, $N_{\text{subF}} = [2, 3, 5]$, and $L = 10$, the output will be a list of length $L$ with the objects distributed more evenly according to their frequencies:
 
-$$\text{SumF} = 2 + 3 + 5 = 10$$
+$\text{SumF} = 2 + 3 + 5 = 10$
 
-$$L_{\text{subF}}[0] = \left( \frac{2}{10} \right) \times 10 = 2$$
+$L_{\text{subF}}[0] = \left( \frac{2}{10} \right) \times 10 = 2$
 
-$$L_{\text{subF}}[1] = \left( \frac{3}{10} \right) \times 10 = 3$$
+$L_{\text{subF}}[1] = \left( \frac{3}{10} \right) \times 10 = 3$
 
-$$L_{\text{subF}}[2] = \left( \frac{5}{10} \right) \times 10 = 5$$
+$L_{\text{subF}}[2] = \left( \frac{5}{10} \right) \times 10 = 5$
 
 The intervals for placing the objects would be calculated as follows:
 
-$$\text{interval}_0 = \frac{10}{2} = 5$$
+$\text{interval}_0 = \frac{10}{2} = 5$
 
-$$\text{interval}_1 = \frac{10}{3} \approx 3.33$$
+$\text{interval}_1 = \frac{10}{3} \approx 3.33$
 
-$$\text{interval}_2 = \frac{10}{5} = 2$$
+$\text{interval}_2 = \frac{10}{5} = 2$
 
 This results in the following distribution:
 
-$$\text{position}_0 = [0, 5]$$
+$\text{position}_0 = [0, 5]$
 
-$$\text{position}_1 = [0, 3, 6]$$
+$\text{position}_1 = [0, 3, 6]$
 
-$$\text{position}_2 = [0, 2, 4, 6, 8]$$
+$\text{position}_2 = [0, 2, 4, 6, 8]$
 
 Mapping these positions onto the line, we get:
 
-$$\text{line} = [0, 2, 1, 2, 2, 0, 1, 2, 2, 1]$$
+$\text{line} = [0, 2, 1, 2, 2, 0, 1, 2, 2, 1]$
 
 This method ensures that the points are more evenly spread along the line $L$.
