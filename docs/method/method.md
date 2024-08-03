@@ -230,7 +230,7 @@ The formula distributes a list of $N$ objects along a line of length $L$ such th
 
 ### Example
 
-For $N = 3$, $N_{\text{subF}} = [2, 3, 5]$, and $L = 10$, the output will be a list of length $L$ with the objects distributed more evenly according to their frequencies:
+For $N = 3$, $N_{\text{subF}} = [2, 3, 5]$ , and $L = 10$, the output will be a list of length $L$ with the objects distributed more evenly according to their frequencies:
 
 $$\text{SumF} = 2 + 3 + 5 = 10$$
 
