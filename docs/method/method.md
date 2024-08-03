@@ -204,12 +204,12 @@ Special characters such as punctuation marks and digits are aggregated into the 
 The Type 1U color cipher algorithm encodes data into an image by having each color (red, green, blue channels) represent a different character. The algorithm works by mapping each character to a set of colors. The colors are then distributed along a line based on the frequency of the characters. The algorithm ensures that the colors are evenly distributed along the line based on the frequency of the characters. This ensures that the Frequently Occurring Characters (FOCs) have more colors assigned to them, making the
 
 #### 1U Formula
-The formula distributes a list of $ N $ objects along a line of length $ L $ such that each object appears with its specified frequency $ N_{\text{subF}} $, and the total number of points along the line equals $ L $.
+The formula distributes a list of $N$ objects along a line of length $L$ such that each object appears with its specified frequency $N_{\text{subF}}$, and the total number of points along the line equals $L$.
 
 1. **Define the Variables:**
-   - $ N $: Total number of distinct objects.
-   - $ N_{\text{subF}} $: A list of frequencies for each object, where $ N_{\text{subF}}[i] $ is the frequency of the $ i $-th object.
-   - $ L $: Total length of the line.
+   - $N$: Total number of distinct objects.
+   - $N_{\text{subF}}$: A list of frequencies for each object, where $N_{\text{subF}}[i]$ is the frequency of the $i$-th object.
+   - $L$: Total length of the line.
 
 2. **Sum of Frequencies:**
 
@@ -219,7 +219,7 @@ The formula distributes a list of $ N $ objects along a line of length $ L $ suc
 
    $$L_{\text{subF}}[i] = \left( \frac{N_{\text{subF}}[i]}{\text{SumF}} \right) \times L$$
 
-   This represents the segment of the line $ L $ that each object $ i $ occupies based on its frequency.
+   This represents the segment of the line $L$ that each object $i$ occupies based on its frequency.
 
 4. **Distribute Points Along the Line:**
 
@@ -231,7 +231,7 @@ The formula distributes a list of $ N $ objects along a line of length $ L $ suc
 
 ### Example
 
-For $ N = 3 $, $ N_{\text{subF}} = [2, 3, 5] $, and $ L = 10 $, the output will be a list of length $ L $ with the objects distributed more evenly according to their frequencies:
+For $N = 3$, $N_{\text{subF}} = [2, 3, 5] $, and $L = 10$, the output will be a list of length $L$ with the objects distributed more evenly according to their frequencies:
 
 $$\text{SumF} = 2 + 3 + 5 = 10$$
 
@@ -261,4 +261,4 @@ Mapping these positions onto the line, we get:
 
 $$\text{line} = [0, 2, 1, 2, 2, 0, 1, 2, 2, 1]$$
 
-This method ensures that the points are more evenly spread along the line $ L $.
+This method ensures that the points are more evenly spread along the line $L$.
