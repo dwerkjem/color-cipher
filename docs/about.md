@@ -17,5 +17,3 @@ For licensing information, please refer to [docs/license.md](docs/license.md).
 ## License
 
 This project is licensed under terms that allow use for any non-profit ventures and permits profit-making ventures only with written consent from the owner, Derek R. Neilson. For more information, see [docs/license.md](docs/license.md).
-
-encryption
