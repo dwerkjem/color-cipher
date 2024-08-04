@@ -57,7 +57,7 @@ For more details on contributing to this project, please refer to [docs/contribu
 
 For licensing information, please refer to [docs/license.md](docs/license.md).
 
-For methodology and design information, please refer to [docs/method.md](docs/method.md).
+For methodology and design information, please refer to [docs/method/method.md](docs/method/method.md).
 
 ## License
 
