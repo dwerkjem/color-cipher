@@ -10,10 +10,18 @@
     - [Results](#results)
     - [Notes About the Data](#notes-about-the-data)
   - [Color Cipher Algorithms](#color-cipher-algorithms)
-    - [Type 1U](#type-1u)
-      - [Description Of 1U](#description-of-1u)
-      - [1U Formula](#1u-formula)
-    - [Example](#example)
+    - [Supplementary Algorithms](#supplementary-algorithms)
+      - [Formula for Distributing Points Along a Line](#formula-for-distributing-points-along-a-line)
+        - [Example of Distributing Points Along a Line](#example-of-distributing-points-along-a-line)
+      - [Formula to decrease the resolution of a dictionary](#formula-to-decrease-the-resolution-of-a-dictionary)
+        - [Decrease Resolution of Dictionary](#decrease-resolution-of-dictionary)
+          - [Step 1: Calculate Total Resolution](#step-1-calculate-total-resolution)
+          - [Step 2: Check if Scaling is Needed](#step-2-check-if-scaling-is-needed)
+          - [Step 3: Calculate Scaling Factor](#step-3-calculate-scaling-factor)
+          - [Step 4: Create New Dictionary with Decreased Resolution](#step-4-create-new-dictionary-with-decreased-resolution)
+          - [Step 5: Normalize the Values](#step-5-normalize-the-values)
+          - [Step 6: Adjust to Match maxResolution](#step-6-adjust-to-match-maxresolution)
+          - [Result](#result)
 
 ## Character Frequency Distribution
 
@@ -197,13 +205,10 @@ Special characters such as punctuation marks and digits are aggregated into the 
 
 ## Color Cipher Algorithms
 
-### Type 1U
+### Supplementary Algorithms
 
-#### Description Of 1U
+#### Formula for Distributing Points Along a Line
 
-The Type 1U color cipher algorithm encodes data into an image by having each color (red, green, blue channels) represent a different character. The algorithm works by mapping each character to a set of colors. The colors are then distributed along a line based on the frequency of the characters. The algorithm ensures that the colors are evenly distributed along the line based on the frequency of the characters. This ensures that the Frequently Occurring Characters (FOCs) have more colors assigned to them, making the
-
-#### 1U Formula
 The formula distributes a list of $N$ objects along a line of length $L$ such that each object appears with its specified frequency $N_{\text{subF}}$, and the total number of points along the line equals $L$.
 
 1. **Define the Variables:**
@@ -225,7 +230,7 @@ The formula distributes a list of $N$ objects along a line of length $L$ such th
 
    ![equation](eq.png)
 
-### Example
+##### Example of Distributing Points Along a Line
 
 For $N = 3$, $N_{\text{subF}} = [2, 3, 5]$ , and $L = 10$, the output will be a list of length $L$ with the objects distributed more evenly according to their frequencies:
 
@@ -258,3 +263,58 @@ Mapping these positions onto the line, we get:
 $$\text{line} = [0, 2, 1, 2, 2, 0, 1, 2, 2, 1]$$
 
 This method ensures that the points are more evenly spread along the line $L$.
+
+#### Formula to decrease the resolution of a dictionary
+
+##### Decrease Resolution of Dictionary
+
+Given:
+- $D$: A dictionary where keys are characters and values are their ratios.
+- $\text{maxResolution}$ : The maximum allowed resolution.
+
+###### Step 1: Calculate Total Resolution
+
+$$\text{totalResolution} = \sum_{k \in D} D[k]$$
+
+###### Step 2: Check if Scaling is Needed
+
+If $\text{totalResolution} \leq \text{maxResolution}$, return $D$ as is.
+
+###### Step 3: Calculate Scaling Factor
+
+If $\text{totalResolution} > \text{maxResolution}$:
+
+$$\text{scalingFactor} = \frac{\text{maxResolution}}{\text{totalResolution}}$$
+
+###### Step 4: Create New Dictionary with Decreased Resolution
+
+$$D' = \{k: D[k] \times \text{scalingFactor} \text{ for each } k \in D\}$$
+
+###### Step 5: Normalize the Values
+
+Calculate the sum of the new dictionary:
+
+$$\text{scalingFactorSum} = \sum_{k \in D'} D'[k]$$
+
+Calculate the normalization factor:
+
+$$\text{normalizationFactor} = \frac{\text{maxResolution}}{\text{scalingFactorSum}}$$
+
+Apply the normalization factor:
+
+$$D'' = \{k: \left\lfloor D'[k] \times \text{normalizationFactor} \right\rfloor \text{ for each } k \in D'\}$$
+
+###### Step 6: Adjust to Match maxResolution
+
+Calculate the difference:
+
+$$\text{difference} = \text{maxResolution} - \sum_{k \in D''} D''[k]$$
+
+Adjust the values to match maxResolution exactly:
+
+1. Sort the keys in $D''$ by their values in descending order if $\text{difference} > 0$, otherwise in ascending order.
+2. Increment or decrement the values in $D''$ by 1 for the sorted keys until $\text{difference} = 0$.
+
+###### Result
+
+The final dictionary $D''$ will have a total resolution that matches $\text{maxResolution}$.
