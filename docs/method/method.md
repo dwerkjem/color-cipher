@@ -223,9 +223,7 @@ The formula distributes a list of $N$ objects along a line of length $L$ such th
 
 4. **Distribute Points Along the Line:**
 
-   $$\text{interval}_i = \frac{L}{N_{\text{subF}}[i]}$$
-
-   $$\text{position}_i[j] = \left\lfloor j \times \text{interval}_i \right\rfloor \quad \text{for } j \in \{0, 1, \ldots, N_{\text{subF}}[i] - 1\}$$
+   ![equation](eq.png)
 
 ### Example
 
