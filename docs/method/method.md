@@ -307,4 +307,3 @@ Given:
     2. Increment or decrement the values in $D''$ by 1 for the sorted keys until $\text{difference} = 0$.
 
     The final dictionary $D''$ will have a resolution of $\text{maxResolution}$.
-    
