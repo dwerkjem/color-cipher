@@ -1,6 +1,5 @@
 import math
 
-
 def distribute_characters(char_ratio, L):
     """
     Distributes characters based on the 1U formula.
@@ -52,7 +51,6 @@ def distribute_characters(char_ratio, L):
             result[position] = char
 
     return result
-
 
 def decrease_resolution_of_dict(dictionary, maxResolution):
     """

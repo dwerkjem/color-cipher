@@ -9,7 +9,7 @@ max_dict_resolution = 2 ** color_depth
 
 def gen_file():
     freq_dict = decrease_resolution_of_dict(get_freq_dict(), max_dict_resolution) # type: ignore
-    distribution = distribute_characters(freq_dict, image_resolution[0] * image_resolution[1])
+    distribution = distribute_characters(freq_dict, max_dict_resolution)
     with open("build/tables/dict{}.json".format(color_depth), "w") as file:
         json.dump(distribution, file)
 
