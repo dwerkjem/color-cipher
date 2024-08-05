@@ -51,11 +51,11 @@ def distribute_characters(char_ratio, L):
 
     return result
 
-
 def decrease_resolution_of_dict(dictionary, maxResolution):
     """
     Ensures that the resolution of the dictionary is not greater than maxResolution.
     If it is greater, it decreases the resolution of the dictionary to maxResolution.
+    Ensures no value in the dictionary is below 1, raises ResolutionError if not possible.
 
     Parameters:
     dictionary (dict): A dictionary where keys are characters and values are their ratios.
@@ -71,6 +71,8 @@ def decrease_resolution_of_dict(dictionary, maxResolution):
     if totalResolution <= maxResolution:
         return dictionary
 
+    # If maxResolution is less than the number of items in the dictionary, raise an error
+    assert len(dictionary) <= maxResolution, "ResolutionError: maxResolution is less than the number of items in the dictionary."
     # Calculate the scaling factor to reduce the resolution
     scalingFactor = maxResolution / totalResolution
 
@@ -82,7 +84,8 @@ def decrease_resolution_of_dict(dictionary, maxResolution):
     normalizationFactor = maxResolution / scalingFactorSum
 
     normalizedDict = {
-        key: round(value * normalizationFactor) for key, value in decreasedDict.items()
+        key: max(1, round(value * normalizationFactor))
+        for key, value in decreasedDict.items()
     }
 
     # Adjust the total to match maxResolution exactly if needed
@@ -94,14 +97,8 @@ def decrease_resolution_of_dict(dictionary, maxResolution):
         for key in sorted_keys:
             if difference == 0:
                 break
-            normalizedDict[key] += 1 if difference > 0 else -1
-            difference += -1 if difference > 0 else 1
+            if (difference > 0) or (normalizedDict[key] > 1):
+                normalizedDict[key] += 1 if difference > 0 else -1
+                difference += -1 if difference > 0 else 1
 
     return normalizedDict
-
-
-# Example usage:
-char_ratio = {"a": 50, "b": 40, "c": 20}
-maxResolution = 10
-reduced_ratio = decrease_resolution_of_dict(char_ratio, maxResolution)
-print(reduced_ratio)
