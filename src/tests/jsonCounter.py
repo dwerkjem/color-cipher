@@ -23,7 +23,7 @@ def main(directory):
                 file_path = os.path.join(root, file)
                 length = get_json_file_length(file_path)
                 if length is not None:
-                    print(f": {length} characters")
+                    print(f"{file}: {length} characters")
 
 
 if __name__ == "__main__":
