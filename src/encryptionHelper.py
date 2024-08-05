@@ -42,6 +42,8 @@ def distribute_characters(char_ratio, L):
 
     # Distribute the characters evenly
     for char, count in char_count.items():
+        if count == 0:
+            continue
         interval = L / count
         for i in range(count):
             position = math.floor(i * interval)
@@ -50,6 +52,7 @@ def distribute_characters(char_ratio, L):
             result[position] = char
 
     return result
+
 
 def decrease_resolution_of_dict(dictionary, maxResolution):
     """
