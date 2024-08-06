@@ -105,37 +105,49 @@ def decrease_resolution_of_dict(dictionary, maxResolution):
     return normalizedDict
 
 
-def char_list_to_color_dict(char_list: list) -> dict:
-    """
-    Converts a list of characters to a dictionary with color values.
+# Importing the itertools module to generate combinations
+import itertools
 
-    Parameters:
-    char_list (list): A list of characters.
 
-    Returns:
-    dict: A dictionary where characters are keys and color values are values.
-    """
-    color_dict = {}
-    assert (
-        len(char_list) % 8 == 0
-    ), "The length of the character list must be a multiple of 8."
+def _calculate_color_depth(total_colors):
+    # Calculate the color depth by taking the base-2 logarithm of the total number of colors
+    color_depth = math.log2(total_colors)
+    assert color_depth.is_integer(), "The total number of colors must be a power of 2."
+    return int(color_depth)
 
-    chanel_limit = len(char_list) // 3
 
-    red = 0
-    green = 0
-    blue = 0
+def _get_channel_range(color_depth):
+    # Each channel's bit depth in a 24-bit color depth (8 bits per channel)
+    bits_per_channel = color_depth // 3
+    # Calculate the maximum value for each channel
+    max_value = (1 << bits_per_channel) - 1
+    return max_value
 
-    while red <= chanel_limit and char_list:
-        while green <= chanel_limit and char_list:
-            while blue <= chanel_limit and char_list:
-                if not char_list:
-                    break
-                color_dict[char_list.pop(0)] = (red, green, blue)
-                blue += 1
-            blue = 0
-            green += 1
-        green = 0
-        red += 1
+
+def _generate_rgb_combinations(color_depth=24):
+    # Get the maximum value for each channel
+    max_value = _get_channel_range(color_depth)
+
+    # Create a list of all possible values for R, G, and B (0 to max_value)
+    values = range(max_value + 1)
+
+    # Generate all combinations using itertools.product
+    rgb_combinations = list(itertools.product(values, repeat=3))
+
+    return rgb_combinations
+
+
+def char_list_to_color_dict(char_list):
+    # Calculate the total number of colors required
+    total_colors = len(char_list)
+
+    # Calculate the color depth based on the total number of colors
+    color_depth = _calculate_color_depth(total_colors)
+
+    # Generate all possible RGB combinations for the given color depth
+    rgb_combinations = _generate_rgb_combinations(color_depth)
+
+    # Create a dictionary mapping each character to an RGB color
+    color_dict = {char: rgb for char, rgb in zip(char_list, rgb_combinations)}
 
     return color_dict
