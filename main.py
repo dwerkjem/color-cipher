@@ -6,7 +6,7 @@ from code.src.encryptionHelper import *
 color_depth = 24
 image_resolution = (1920, 1080)
 max_dict_resolution = 2**color_depth
-base_dir = "build/tables"
+base_dir = "code/build/tables"
 dict_file = os.path.join(base_dir, f"dict{color_depth}.json")
 color_dict_file = os.path.join(base_dir, f"color_dict{color_depth}.json")
 
@@ -23,7 +23,7 @@ def gen_file():
 
 def ensure_exist():
     assert os.path.exists(
-        "build"
+        "code/build"
     ), "Please run the program from the root directory and ensure that the build directory exists"
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)
