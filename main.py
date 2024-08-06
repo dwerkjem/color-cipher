@@ -20,11 +20,16 @@ def ensure_exist():
     if not os.path.exists("build/tables/dict{}.json".format(color_depth)):
         gen_file()
 
-def main():
-    ensure_exist()
+def gen_color_dict():
     with open("build/tables/dict{}.json".format(color_depth), "r") as file:
         distribution = json.load(file)
-        print("Loaded distribution")
+        color_dict = char_list_to_color_dict(list(distribution))
+        print("Generated color dictionary")
+        return color_dict
 
+def main():
+    ensure_exist()
+    color_dict = gen_color_dict()
+    print(color_dict)
 if __name__ == "__main__":
     main()

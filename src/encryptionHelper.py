@@ -103,3 +103,39 @@ def decrease_resolution_of_dict(dictionary, maxResolution):
                 difference += -1 if difference > 0 else 1
 
     return normalizedDict
+
+
+def char_list_to_color_dict(char_list: list) -> dict:
+    """
+    Converts a list of characters to a dictionary with color values.
+
+    Parameters:
+    char_list (list): A list of characters.
+
+    Returns:
+    dict: A dictionary where characters are keys and color values are values.
+    """
+    color_dict = {}
+    assert (
+        len(char_list) % 8 == 0
+    ), "The length of the character list must be a multiple of 8."
+
+    chanel_limit = len(char_list) // 3
+
+    red = 0
+    green = 0
+    blue = 0
+
+    while red <= chanel_limit and char_list:
+        while green <= chanel_limit and char_list:
+            while blue <= chanel_limit and char_list:
+                if not char_list:
+                    break
+                color_dict[char_list.pop(0)] = (red, green, blue)
+                blue += 1
+            blue = 0
+            green += 1
+        green = 0
+        red += 1
+
+    return color_dict
