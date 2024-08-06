@@ -5,7 +5,7 @@
 *__pycache__
 
 # virtual environment files
-/venv
+/code/venv
 
 # build files
-/build/tables
+/code/build/tables

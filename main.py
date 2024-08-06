@@ -1,7 +1,7 @@
 import os
 import json
-from src.tableOfValues import *
-from src.encryptionHelper import *
+from code.src.tableOfValues import *
+from code.src.encryptionHelper import *
 
 color_depth = 24
 image_resolution = (1920, 1080)
