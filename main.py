@@ -20,7 +20,6 @@ def gen_file():
     except Exception as e:
         print(f"Error generating file: {e}")
 
-
 def ensure_exist():
     assert os.path.exists(
         "code/build"

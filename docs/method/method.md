@@ -10,7 +10,6 @@
     - [Results](#results)
     - [Notes About the Data](#notes-about-the-data)
   - [Color Cipher Algorithms](#color-cipher-algorithms)
-    - [Supplementary Algorithms](#supplementary-algorithms)
 
 ## Character Frequency Distribution
 
@@ -193,7 +192,3 @@ The bar graph and pie chart show the character frequency distribution of the tex
 Special characters such as punctuation marks and digits are aggregated into the symbol start and end characters. A full stop is represented by an empty symbol.
 
 ## Color Cipher Algorithms
-
-### Supplementary Algorithms
-
-see [Supplementary Algorithms](SupplementaryAlgorithms.md)

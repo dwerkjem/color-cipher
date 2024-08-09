@@ -9,3 +9,4 @@
 
 # build files
 /code/build/tables
+.pytest_cache
