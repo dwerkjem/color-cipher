@@ -15,6 +15,7 @@ def distribute_characters(char_ratio, L):
                 total_assigned += 1
             else:
                 break
+
     while total_assigned > L:
         for char in char_count:
             if total_assigned > L and char_count[char] > 0:
@@ -89,7 +90,6 @@ def generate_rgb_combinations(color_depth):
 def char_list_to_color_dict(char_list):
     """
     Generates a dictionary mapping each character in char_list to a unique RGB color.
-    There are 16,777,216 possible RGB colors (256^3).
     """
     color_depth = calculate_color_depth(len(char_list))
     rgb_combinations = generate_rgb_combinations(color_depth)
