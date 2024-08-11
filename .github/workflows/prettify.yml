@@ -9,18 +9,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false  # Disable automatic token persistence
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # Adjust the version as needed
+          python-version: '3.x'
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'  # Adjust the version as needed
+          node-version: '14'
 
       - name: Install dependencies
         run: |
