@@ -102,3 +102,6 @@ freq_dict = {
 
 def get_freq_dict():
     return freq_dict
+
+def key_freq_dict():
+    return dict(list(freq_dict.items())[:36])
