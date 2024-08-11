@@ -33,7 +33,13 @@ jobs:
           chmod +x ./code/dev_tools/format.sh
           ./code/dev_tools/format.sh
 
+      - name: Check for changes
+        id: git_status
+        run: |
+          git diff --exit-code || echo "has_changes=true" >> $GITHUB_ENV
+
       - name: Commit and push changes
+        if: env.has_changes == 'true'
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
