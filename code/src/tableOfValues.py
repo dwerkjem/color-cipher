@@ -48,8 +48,10 @@ values_list = [
     "END OF SYMBOL",
 ]
 
+
 def get_values_list():
     return values_list
+
 
 freq_dict = {
     "a": 123287,
@@ -100,8 +102,10 @@ freq_dict = {
     "END OF SYMBOL": 105362,
 }
 
+
 def get_freq_dict():
     return freq_dict
+
 
 def key_freq_dict():
     return dict(list(freq_dict.items())[:36])

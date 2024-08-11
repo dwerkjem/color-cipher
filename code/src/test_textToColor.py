@@ -1,5 +1,6 @@
 from textToColor import *
 
+
 def test_distribute_characters():
     char_ratio = {"a": 2, "b": 3, "c": 5}
     L = 20
@@ -71,8 +72,9 @@ def test_generate_rgb_combinations():
     expected_result = [(r, g, b) for r in range(4) for g in range(4) for b in range(4)]
     assert result == expected_result, f"Expected {expected_result}, but got {result}"
 
+
 def test_char_list_to_color_dict():
-    distribution = [ "a", "b", "c", "d", "e", "f", "g", "h"]
+    distribution = ["a", "b", "c", "d", "e", "f", "g", "h"]
     expected_result = {
         (0, 0, 0): "a",
         (0, 0, 1): "b",
@@ -85,6 +87,7 @@ def test_char_list_to_color_dict():
     }
     result = char_list_to_color_dict(distribution)
     assert result == expected_result, f"Expected {expected_result}, but got {result}"
+
 
 def test_stress_test_char_list_to_color_dict():
     # Using the provided freq_dict
@@ -194,11 +197,63 @@ def test_stress_test_char_list_to_color_dict():
         (0, 0, 46),
         (0, 0, 47),
         (0, 0, 48),
-        (0, 0, 49))
+        (0, 0, 49),
+    )
 
     expected = [
-                    "a","b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "e", "n", "o", "p", "q", "r", "o", "s", "t", "a", "i", "n", "t", "e", "r", "s", "u", "v", "w", "x", "y", "z", "0", "l", "t", "1", "o", "e", "h", "2", "3", "a", "d", "n", "i", "4", "5"
-                ]
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "e",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "o",
+        "s",
+        "t",
+        "a",
+        "i",
+        "n",
+        "t",
+        "e",
+        "r",
+        "s",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "0",
+        "l",
+        "t",
+        "1",
+        "o",
+        "e",
+        "h",
+        "2",
+        "3",
+        "a",
+        "d",
+        "n",
+        "i",
+        "4",
+        "5",
+    ]
     for i, color in enumerate(firstFifty):
         assert color in color_dict, f"Color {color} not found in color_dict"
-        assert color_dict[color] == expected[i], f"Expected {expected[i]} at color {color}, but got {color_dict[color]}"
+        assert (
+            color_dict[color] == expected[i]
+        ), f"Expected {expected[i]} at color {color}, but got {color_dict[color]}"
