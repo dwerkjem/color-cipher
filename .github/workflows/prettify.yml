@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          persist-credentials: false  # Disable automatic token persistence
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -32,12 +34,11 @@ jobs:
           ./code/dev_tools/format.sh
 
       - name: Commit and push changes
-        if: github.ref == 'refs/heads/main'
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git add .
           git commit -m 'Prettify code'
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
