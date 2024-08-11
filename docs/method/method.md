@@ -182,10 +182,7 @@ print(f"Uppercase letters total: {upper}")
 
 ### Results
 
-![Bar Graph](character_frequency_distribution_bar.png)
-![Pie Chart](character_frequency_distribution.png)
-
-The bar graph and pie chart show the character frequency distribution of the text data. The most frequent characters are the lowercase letter 'e' and the space character.
+The bar graph and pie chart show the character frequency distribution of the text data. The most frequent characters are the lowercase letter 'e' and the space character
 
 ### Notes About the Data
 
