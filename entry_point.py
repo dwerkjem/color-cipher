@@ -30,8 +30,8 @@ To execute the script, simply run it as the main module. The script will generat
 
 import os
 import pickle
-from src.table_of_values import get_freq_dict
-from src.text_to_color import (
+from code.src.table_of_values import get_freq_dict
+from code.src.text_to_color import (
     char_list_to_color_dict,
     distribute_characters,
     decrease_resolution_of_dict,
@@ -46,6 +46,9 @@ color_dict_file = os.path.join(BASE_DIR, f"color_dict{COLOR_DEPTH}.pkl")
 
 
 def check_cache():
+    """
+    Generate and cache the frequency and color dictionaries.
+    """
     if not os.path.exists(BASE_DIR):
         os.makedirs(BASE_DIR)
 
@@ -62,6 +65,9 @@ def check_cache():
 
 
 def main():
+    """
+    Main function to check and generate the cache.
+    """
     check_cache()
 
 

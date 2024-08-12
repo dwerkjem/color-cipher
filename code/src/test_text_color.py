@@ -34,6 +34,10 @@ from text_to_color import (
 
 
 def test_distribute_characters():
+    """
+    Test the distribution of characters based on their frequency
+    ratio.
+    """
     char_ratio = {"a": 2, "b": 3, "c": 5}
     L = 20
     result = distribute_characters(char_ratio, L)
@@ -63,6 +67,9 @@ def test_distribute_characters():
 
 
 def test_decrease_resolution_of_dict_correctly():
+    '''
+    Test the decrease in resolution of a frequency dictionary.
+    '''
     dictionary = {"a": 100, "b": 200, "c": 300}
     maxResolution = 150
     result = decrease_resolution_of_dict(dictionary, maxResolution)
@@ -71,6 +78,9 @@ def test_decrease_resolution_of_dict_correctly():
 
 
 def test_calculate_color_depth():
+    '''
+    Test the calculation of color depth.
+    '''
     total_colors = 16777216
     result = calculate_color_depth(total_colors)
     expected_result = 8
@@ -78,6 +88,9 @@ def test_calculate_color_depth():
 
 
 def test_get_channel_range():
+    '''
+    Test the retrieval of the range of values for each color channel.
+    '''
     color_depth = 8
     result = get_channel_range(color_depth)
     expected_result = 256
@@ -85,6 +98,9 @@ def test_get_channel_range():
 
 
 def test_generate_rgb_combinations():
+    '''
+    Test the generation of RGB combinations for different color depths.
+    '''
     color_depth = 1
     result = generate_rgb_combinations(color_depth)
     expected_result = [
@@ -106,6 +122,9 @@ def test_generate_rgb_combinations():
 
 
 def test_char_list_to_color_dict():
+    """
+    Test the mapping of a character list to RGB color combinations.
+    """
     distribution = ["a", "b", "c", "d", "e", "f", "g", "h"]
     expected_result = {
         (0, 0, 0): "a",
@@ -122,6 +141,10 @@ def test_char_list_to_color_dict():
 
 
 def test_stress_test_char_list_to_color_dict():
+    """
+    Test the mapping of a character list to RGB color combinations
+    with a large frequency dictionary
+    """
     # Using the provided freq_dict
     freq_dict = {
         "a": 123287,

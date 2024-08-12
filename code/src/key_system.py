@@ -1,9 +1,32 @@
+'''
+This module contains functions for generating keys, hashing keys, and converting hash strings to ASCII art.
+
+Functions:
+- weightedRandomChoice: Selects items from a dictionary based on their weights.
+- generateKey: Generates a key based on the key_freq_dict.
+- hashKey: Hashes a key using SHA-256.
+- hashToAsciiArtPyramid: Converts a hash string to ASCII art in a centered pyramid shape.
+
+Modules:
+- random: Provides functions for generating random numbers.
+- hashlib: Provides functions for hashing data.
+- table_of_values: Contains the key_freq_dict dictionary.
+
+Usage:
+The generateKey function can be used to generate a key of a specified length based on the key_freq_dict. The hashKey function can be used to hash a key using SHA-256. The hashToAsciiArtPyramid function can be used to convert a hash string to ASCII art in a centered pyramid shape.
+
+Example:
+key = generateKey(10)
+hashed_key = hashKey(key)
+ascii_art = hashToAsciiArtPyramid(hashed_key)
+print(ascii_art)
+'''
 import random
 import hashlib
 from table_of_values import key_freq_dict
 
 
-def weightedRandomChoice(choices: dict, amount: int) -> list:
+def weighted_random_choice(choices: dict, amount: int) -> list:
     """
     Given a dictionary of choices and their weights, this function will return a list of choices based on their weights.
     """
@@ -20,14 +43,14 @@ def weightedRandomChoice(choices: dict, amount: int) -> list:
     return result
 
 
-def generateKey(key_length: int) -> str:
+def generate_key(key_length: int) -> str:
     """
     Given a key length, this function will generate a key based on the key_freq_dict.
     """
-    return "".join(weightedRandomChoice(key_freq_dict(), key_length))
+    return "".join(weighted_random_choice(key_freq_dict(), key_length))
 
 
-def hashKey(key: str) -> str:
+def hash_key(key: str) -> str:
     """
     Given a key, this function will hash the key using SHA-256 and return the hexadecimal digest.
     """
@@ -36,7 +59,7 @@ def hashKey(key: str) -> str:
     return sha256.hexdigest()
 
 
-def hashToAsciiArtPyramid(hash_str):
+def hash_to_ascii_pyramid(hash_str):
     """
     Converts a hash string to ASCII art in a centered pyramid shape.
     """

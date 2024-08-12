@@ -21,6 +21,9 @@ Functions:
 
 Modules:
 - textToColor: Contains functions for processing character frequencies and mapping them to colors.
+
+Usage:
+To run the tests, run `pytest code/src/test_text_to_color.py` from the root directory.
 """
 
 from text_to_color import (
@@ -34,6 +37,10 @@ from text_to_color import (
 
 
 def test_distribute_characters():
+    '''
+    Test the distribution of characters based on their frequency ratio.
+
+    '''
     char_ratio = {"a": 2, "b": 3, "c": 5}
     L = 20
     result = distribute_characters(char_ratio, L)
@@ -63,6 +70,9 @@ def test_distribute_characters():
 
 
 def test_decrease_resolution_of_dict_correctly():
+    '''
+    Test the decrease in resolution of a frequency dictionary.
+    '''
     dictionary = {"a": 100, "b": 200, "c": 300}
     maxResolution = 150
     result = decrease_resolution_of_dict(dictionary, maxResolution)
@@ -71,6 +81,9 @@ def test_decrease_resolution_of_dict_correctly():
 
 
 def test_calculate_color_depth():
+    '''
+    Test the calculation of color depth.
+    '''
     total_colors = 16777216
     result = calculate_color_depth(total_colors)
     expected_result = 8
@@ -78,6 +91,9 @@ def test_calculate_color_depth():
 
 
 def test_get_channel_range():
+    '''
+    Test the retrieval of the range of values for each color channel.
+    '''
     color_depth = 8
     result = get_channel_range(color_depth)
     expected_result = 256
@@ -85,6 +101,9 @@ def test_get_channel_range():
 
 
 def test_generate_rgb_combinations():
+    '''
+    Test the generation of RGB combinations for different color depths.
+    '''
     color_depth = 1
     result = generate_rgb_combinations(color_depth)
     expected_result = [
@@ -106,6 +125,9 @@ def test_generate_rgb_combinations():
 
 
 def test_char_list_to_color_dict():
+    '''
+    Test the mapping of a character list to RGB color combinations.
+    '''
     distribution = ["a", "b", "c", "d", "e", "f", "g", "h"]
     expected_result = {
         (0, 0, 0): "a",
@@ -122,8 +144,11 @@ def test_char_list_to_color_dict():
 
 
 def test_stress_test_char_list_to_color_dict():
+    '''
+    Perform a stress test on the char_list_to_color_dict function using a large frequency dictionary.
+    '''
     # Using the provided freq_dict
-    freq_dict = {
+    FREQ_DICT = {
         "a": 123287,
         "b": 24227,
         "c": 50211,
@@ -171,7 +196,7 @@ def test_stress_test_char_list_to_color_dict():
         "START OF SYMBOL": 105362,
         "END OF SYMBOL": 105362,
     }
-    distribution = distribute_characters(freq_dict, 16777216)
+    distribution = distribute_characters(FREQ_DICT, 16777216)
     assert (
         len(distribution) == 16777216
     ), f"Expected 16777216 items in distribution, but got {len(distribution)}"
