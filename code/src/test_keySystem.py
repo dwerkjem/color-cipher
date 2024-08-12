@@ -1,7 +1,13 @@
 import random
+import hashlib
 
 from tableOfValues import key_freq_dict
-from keySystem import weightedRandomChoice, generateKey
+from keySystem import (
+    weightedRandomChoice,
+    generateKey,
+    hashKey,
+    hash_to_ascii_art_pyramid,
+)
 
 
 def test_weightedRandomChoice():
@@ -33,10 +39,28 @@ def test_generateKey_characters():
         assert char in valid_chars
 
 
-def test_generateKey_mocked():
+def test_generateKey_seeded():
     random.seed(0)
     key_length = 10
     key = generateKey(key_length)
     expected_key = "tsienisglo"  # based on random.seed(0)
 
     assert key == expected_key
+
+
+def test_hashKey():
+    key = "test_key"
+    hashed_key = hashKey(key)
+    expected_hashed_key = hashlib.sha256(key.encode()).hexdigest()
+
+    assert hashed_key == expected_hashed_key
+
+
+def test_hash_to_ascii_art_pyramid():
+    hash_str = "01234567"
+    ascii_art = hash_to_ascii_art_pyramid(hash_str)
+    expected_ascii_art = "  @  \n @%% \n #**+"
+
+    assert (
+        ascii_art == expected_ascii_art
+    ), f"Expected:\n{expected_ascii_art}\nGot:\n{ascii_art}"
