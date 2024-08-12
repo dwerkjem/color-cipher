@@ -1,5 +1,5 @@
 [MESSAGES CONTROL]
-disable=C0103,C0114,C0115,C0116,C0301,R0801
+disable=C0301
 
 [NAMING]
 variable-rgx=[a-z_][a-z0-9_]{0,30}$
@@ -7,4 +7,11 @@ const-rgx=[A-Z_][A-Z0-9_]{0,30}$
 method-rgx=[a-z_][a-z0-9_]{0,30}$
 function-rgx=[a-z_][a-z0-9_]{0,30}$
 class-rgx=[A-Z_][a-zA-Z0-9]+$
-module-rgx=[a-z_][a-z0-9_]{0,30}$
+module-rgx=[a-z_][a-z0-9_]{0,30}$=
+
+[TYPECHECK]
+ignored-modules=sqlalchemy,flask,flask_sqlalchemy,flask_restful,flask_jwt_extended,flask_jwt
+
+[FORMAT]
+max-line-length=120
+ignore=CVS

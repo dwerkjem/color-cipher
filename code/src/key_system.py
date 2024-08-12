@@ -1,6 +1,6 @@
 import random
 import hashlib
-from tableOfValues import key_freq_dict
+from table_of_values import key_freq_dict
 
 
 def weightedRandomChoice(choices: dict, amount: int) -> list:
@@ -36,7 +36,7 @@ def hashKey(key: str) -> str:
     return sha256.hexdigest()
 
 
-def hash_to_ascii_art_pyramid(hash_str):
+def hashToAsciiArtPyramid(hash_str):
     """
     Converts a hash string to ASCII art in a centered pyramid shape.
     """

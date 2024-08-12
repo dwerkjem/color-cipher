@@ -1,4 +1,29 @@
-from textToColor import (
+"""
+Unit tests for the textToColor module functions.
+
+These tests cover the following functions:
+1. distribute_characters: Distributes characters based on their frequency ratio.
+2. decrease_resolution_of_dict: Decreases the resolution of a frequency dictionary to a specified maximum resolution.
+3. calculate_color_depth: Calculates the color depth needed for a given number of colors.
+4. get_channel_range: Returns the range of values for each color channel based on the color depth.
+5. generate_rgb_combinations: Generates all possible RGB combinations for a given color depth.
+6. char_list_to_color_dict: Maps a list of characters to RGB color combinations.
+7. stress_test_char_list_to_color_dict: A stress test for the char_list_to_color_dict function using a large frequency dictionary.
+
+Functions:
+- test_distribute_characters: Tests the distribution of characters based on their frequency ratio.
+- test_decrease_resolution_of_dict_correctly: Tests the decrease in resolution of a frequency dictionary.
+- test_calculate_color_depth: Tests the calculation of color depth.
+- test_get_channel_range: Tests the retrieval of the range of values for each color channel.
+- test_generate_rgb_combinations: Tests the generation of RGB combinations for different color depths.
+- test_char_list_to_color_dict: Tests the mapping of a character list to RGB color combinations.
+- test_stress_test_char_list_to_color_dict: Performs a stress test on the char_list_to_color_dict function using a large frequency dictionary.
+
+Modules:
+- textToColor: Contains functions for processing character frequencies and mapping them to colors.
+"""
+
+from text_to_color import (
     distribute_characters,
     decrease_resolution_of_dict,
     calculate_color_depth,
@@ -154,7 +179,7 @@ def test_stress_test_char_list_to_color_dict():
     assert (
         len(color_dict) == 16777216
     ), f"Expected 16777216 colors, but got {len(color_dict)}"
-    firstFifty = (
+    FIRST_FIFTY = (
         (0, 0, 0),
         (0, 0, 1),
         (0, 0, 2),
@@ -207,7 +232,7 @@ def test_stress_test_char_list_to_color_dict():
         (0, 0, 49),
     )
 
-    expected = [
+    EXPECTED = [
         "a",
         "b",
         "c",
@@ -259,8 +284,9 @@ def test_stress_test_char_list_to_color_dict():
         "4",
         "5",
     ]
-    for i, color in enumerate(firstFifty):
+
+    for i, color in enumerate(FIRST_FIFTY):
         assert color in color_dict, f"Color {color} not found in color_dict"
         assert (
-            color_dict[color] == expected[i]
-        ), f"Expected {expected[i]} at color {color}, but got {color_dict[color]}"
+            color_dict[color] == EXPECTED[i]
+        ), f"Expected {EXPECTED[i]} at color {color}, but got {color_dict[color]}"

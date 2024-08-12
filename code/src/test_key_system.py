@@ -1,8 +1,8 @@
 import random
 import hashlib
 
-from tableOfValues import key_freq_dict
-from keySystem import (
+from table_of_values import key_freq_dict
+from key_system import (
     weightedRandomChoice,
     generateKey,
     hashKey,
