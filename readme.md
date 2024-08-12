@@ -2,54 +2,65 @@
 
 ## Description
 
-This is a Python program that encrypts and decrypts text using color-based cryptography. The program utilizes a key that is used for both encryption and decryption of the text. The structure of the key is as follows:
-
-```Pseudo code
-key 'MMEEIIIIII'
-
-MM - Mode of encryption
-EE - Error correction level
-IIII - Initialization vector
-
-example key '2K54332221'
-```
+This is a Python program that encrypts and decrypts text using color-based cryptography. The program utilizes a key that is used for both encryption and decryption of the text.
 
 ## Usage
 
-### Installation
+### Windows
 
-To run the program, you will need to install the required dependencies. You can use Docker, pyvenv, or Poetry to set up the environment. docker is recommended for running the program.
+To run the program on Windows, follow these steps:
 
-#### Docker (Recommended)
+1. Navigate to the root directory of your project:
 
-To run the program using Docker, you can build the Docker image and run the container.
+   ```cmd
+   cd path\to\project REM navigate to the root directory of this project
+   ```
 
-```bash
-docker build -t color-cipher .
-docker run -it color-cipher
-```
+2. Build the virtual environment:
 
-#### pyvenv
+   ```cmd
+   dev_tools\venvBuilder.bat
+   ```
 
-To run the program using a Python virtual environment, you can create a virtual environment and install the required packages.
+3. Activate the virtual environment:
 
-```bash
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
+   ```cmd
+   venv\Scripts\activate
+   ```
 
-#### poetry
+4. Run the program:
 
-To run the program using Poetry, you can install the dependencies using Poetry.
+   ```cmd
+   python main.py
+   ```
 
-```bash
-poetry install
-```
+### Linux
 
-### Encryption
+To run the program on Linux, follow these steps:
 
-### Decryption
+1. Ensure you are in the root directory of the project:
+
+   ```bash
+   pwd # ensure you are in the root directory of the project
+   ```
+
+2. Build the virtual environment:
+
+   ```bash
+   ./code/dev_tools/venvBuilder.sh # build the virtual environment
+   ```
+
+3. Activate the virtual environment:
+
+   ```bash
+   source venv/bin/activate # activate the virtual environment
+   ```
+
+4. Run the program:
+
+   ```bash
+   python3 code/main.py # run the program
+   ```
 
 ## Documentation
 
