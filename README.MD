@@ -36,7 +36,7 @@ To run the program on Windows, follow these steps:
 4. Run the program:
 
    ```cmd
-   python main.py
+   python entry_point.py
    ```
 
 ### Linux
@@ -70,7 +70,7 @@ To run the program on Linux, follow these steps:
 5. Run the program:
 
    ```bash
-   python3 code/main.py # run the program
+   python3 entry_point.py # run the program
    ```
 
 ## Documentation
