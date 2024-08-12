@@ -27,8 +27,8 @@ To run the tests, run `pytest code/src/test_key_system.py` from the root directo
 import random
 import hashlib
 
-from table_of_values import key_freq_dict
-from key_system import (
+from src.table_of_values import key_freq_dict
+from src.key_system import (
     weighted_random_choice,
     generate_key,
     hash_key,

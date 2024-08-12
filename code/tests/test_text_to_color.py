@@ -1,5 +1,5 @@
 """
-Unit tests for the test_text_to_color module functions.
+Unit tests for the textToColor module functions.
 
 These tests cover the following functions:
 1. distribute_characters: Distributes characters based on their frequency ratio.
@@ -21,9 +21,12 @@ Functions:
 
 Modules:
 - textToColor: Contains functions for processing character frequencies and mapping them to colors.
+
+Usage:
+To run the tests, run `pytest code/src/test_text_to_color.py` from the root directory.
 """
 
-from text_to_color import (
+from src.text_to_color import (
     distribute_characters,
     decrease_resolution_of_dict,
     calculate_color_depth,
@@ -35,8 +38,8 @@ from text_to_color import (
 
 def test_distribute_characters():
     """
-    Test the distribution of characters based on their frequency
-    ratio.
+    Test the distribution of characters based on their frequency ratio.
+
     """
     char_ratio = {"a": 2, "b": 3, "c": 5}
     L = 20
@@ -142,11 +145,10 @@ def test_char_list_to_color_dict():
 
 def test_stress_test_char_list_to_color_dict():
     """
-    Test the mapping of a character list to RGB color combinations
-    with a large frequency dictionary
+    Perform a stress test on the char_list_to_color_dict function using a large frequency dictionary.
     """
     # Using the provided freq_dict
-    freq_dict = {
+    FREQ_DICT = {
         "a": 123287,
         "b": 24227,
         "c": 50211,
@@ -194,7 +196,7 @@ def test_stress_test_char_list_to_color_dict():
         "START OF SYMBOL": 105362,
         "END OF SYMBOL": 105362,
     }
-    distribution = distribute_characters(freq_dict, 16777216)
+    distribution = distribute_characters(FREQ_DICT, 16777216)
     assert (
         len(distribution) == 16777216
     ), f"Expected 16777216 items in distribution, but got {len(distribution)}"
@@ -202,7 +204,7 @@ def test_stress_test_char_list_to_color_dict():
     assert (
         len(color_dict) == 16777216
     ), f"Expected 16777216 colors, but got {len(color_dict)}"
-    firstFifty = (
+    FIRST_FIFTY = (
         (0, 0, 0),
         (0, 0, 1),
         (0, 0, 2),
@@ -255,7 +257,7 @@ def test_stress_test_char_list_to_color_dict():
         (0, 0, 49),
     )
 
-    expected = [
+    EXPECTED = [
         "a",
         "b",
         "c",
@@ -307,11 +309,12 @@ def test_stress_test_char_list_to_color_dict():
         "4",
         "5",
     ]
-    for i, color in enumerate(firstFifty):
+
+    for i, color in enumerate(FIRST_FIFTY):
         assert color in color_dict, f"Color {color} not found in color_dict"
         assert (
-            color_dict[color] == expected[i]
-        ), f"Expected {expected[i]} at color {color}, but got {color_dict[color]}"
+            color_dict[color] == EXPECTED[i]
+        ), f"Expected {EXPECTED[i]} at color {color}, but got {color_dict[color]}"
 
 
 if __name__ == "__main__":
