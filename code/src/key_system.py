@@ -26,7 +26,7 @@ print(ascii_art)
 import random
 import hashlib
 
-from table_of_values import key_freq_dict
+from code.src.values_table import key_freq_dict
 
 
 def weighted_random_choice(choices: dict, amount: int) -> list:

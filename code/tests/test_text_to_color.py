@@ -26,7 +26,7 @@ Usage:
 To run the tests, run `pytest code/src/test_text_to_color.py` from the root directory.
 """
 
-from src.text_to_color import (
+from code.src.text_to_color import (
     distribute_characters,
     decrease_resolution_of_dict,
     calculate_color_depth,

@@ -21,14 +21,14 @@ Modules:
 - table_of_values: Contains the key_freq_dict dictionary.
 
 Usage:
-To run the tests, run `pytest code/src/test_key_system.py` from the root directory.
+To run the tests, run `pytest code/tests/test_key_system.py` from the root directory.
 """
 
 import random
 import hashlib
 
-from src.table_of_values import key_freq_dict
-from src.key_system import (
+from code.src.values_table import key_freq_dict
+from code.src.key_system import (
     weighted_random_choice,
     generate_key,
     hash_key,

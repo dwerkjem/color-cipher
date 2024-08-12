@@ -30,7 +30,7 @@ To execute the script, simply run it as the main module. The script will generat
 
 import os
 import pickle
-from code.src.table_of_values import get_freq_dict
+from src.values_table import get_freq_dict
 from code.src.text_to_color import (
     char_list_to_color_dict,
     distribute_characters,
