@@ -5,7 +5,8 @@ Functions:
 - weightedRandomChoice: Selects items from a dictionary based on their weights.
 - generateKey: Generates a key based on the key_freq_dict.
 - hashKey: Hashes a key using SHA-256.
-- hashToAsciiArtPyramid: Converts a hash string to ASCII art in a centered pyramid shape.
+- hash_to_ascii_pyramid: Converts a hash string to ASCII art in a centered pyramid shape.
+-
 
 Modules:
 - random: Provides functions for generating random numbers.
@@ -18,12 +19,13 @@ The generateKey function can be used to generate a key of a specified length bas
 Example:
 key = generateKey(10)
 hashed_key = hashKey(key)
-ascii_art = hashToAsciiArtPyramid(hashed_key)
+ascii_art = hash_to_ascii_pyramid(hashed_key)
 print(ascii_art)
 """
 
 import random
 import hashlib
+
 from table_of_values import key_freq_dict
 
 
@@ -89,3 +91,7 @@ def hash_to_ascii_pyramid(hash_str):
         index += level_length
 
     return "\n".join(pyramid_art)
+
+
+if __name__ == "__main__":
+    print(__doc__)

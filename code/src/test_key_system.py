@@ -108,3 +108,7 @@ def test_hash_to_ascii_art_pyramid():
     assert (
         ascii_art == expected_ascii_art
     ), f"Expected:\n{expected_ascii_art}\nGot:\n{ascii_art}"
+
+
+if __name__ == "__main__":
+    print(__doc__)

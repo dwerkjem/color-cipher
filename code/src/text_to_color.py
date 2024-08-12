@@ -207,3 +207,7 @@ def char_list_to_color_dict(char_list):
     rgb_combinations = generate_rgb_combinations(color_depth)
     color_dict = {rgb_combinations[i]: char_list[i] for i in range(len(char_list))}
     return color_dict
+
+
+if __name__ == "__main__":
+    print(__doc__)

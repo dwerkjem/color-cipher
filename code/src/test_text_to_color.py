@@ -315,3 +315,7 @@ def test_stress_test_char_list_to_color_dict():
         assert (
             color_dict[color] == EXPECTED[i]
         ), f"Expected {EXPECTED[i]} at color {color}, but got {color_dict[color]}"
+
+
+if __name__ == "__main__":
+    print(__doc__)
