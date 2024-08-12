@@ -6,6 +6,10 @@ This is a Python program that encrypts and decrypts text using color-based crypt
 
 ## Usage
 
+### Prerequisites
+
+To run this program, you will need to have Python 3.8 or later installed on your system. You can download Python from the [official website](https://www.python.org/downloads/).
+
 ### Windows
 
 To run the program on Windows, follow these steps:
@@ -13,7 +17,8 @@ To run the program on Windows, follow these steps:
 1. Navigate to the root directory of your project:
 
    ```cmd
-   cd path\to\project REM navigate to the root directory of this project
+   cd path\to\project
+   REM navigate to the root directory of this project
    ```
 
 2. Build the virtual environment:
@@ -44,19 +49,25 @@ To run the program on Linux, follow these steps:
    pwd # ensure you are in the root directory of the project
    ```
 
-2. Build the virtual environment:
+2. if you are not in the root directory, navigate to it:
+
+   ```bash
+   cd path/to/project # navigate to the root directory of this project
+   ```
+
+3. Build the virtual environment:
 
    ```bash
    ./code/dev_tools/venvBuilder.sh # build the virtual environment
    ```
 
-3. Activate the virtual environment:
+4. Activate the virtual environment:
 
    ```bash
    source venv/bin/activate # activate the virtual environment
    ```
 
-4. Run the program:
+5. Run the program:
 
    ```bash
    python3 code/main.py # run the program
