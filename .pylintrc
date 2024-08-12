@@ -1,5 +1,5 @@
 [MESSAGES CONTROL]
-disable=C0103,C0114,C0115,C0116
+disable=C0103,C0114,C0115,C0116,C0301,R0801
 
 [NAMING]
 variable-rgx=[a-z_][a-z0-9_]{0,30}$

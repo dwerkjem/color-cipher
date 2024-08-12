@@ -1,7 +1,11 @@
 import os
 import pickle
-from code.src.tableOfValues import *
-from code.src.textToColor import *
+from code.src.tableOfValues import get_freq_dict
+from code.src.textToColor import (
+    char_list_to_color_dict,
+    distribute_characters,
+    decrease_resolution_of_dict,
+)
 
 color_depth = 24
 image_resolution = (1920, 1080)
@@ -15,19 +19,16 @@ def check_cache():
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)
 
-    if os.path.exists(dict_file) and os.path.exists(color_dict_file):
-        return True
-    else:
-        print(f"Generating tables for color depth {color_depth}...")
-        # Fit the dictionary to the color depth
-        char_ratio = get_freq_dict()
-        char_ratio = decrease_resolution_of_dict(char_ratio, max_dict_resolution)
-        char_ratio = distribute_characters(char_ratio, max_dict_resolution)
-        with open(dict_file, "wb") as f:
-            pickle.dump(char_ratio, f)
-        colorDict = char_list_to_color_dict(char_ratio)
-        with open(color_dict_file, "wb") as f:
-            pickle.dump(colorDict, f)
+    print(f"Generating tables for color depth {color_depth}...")
+    # Fit the dictionary to the color depth
+    char_ratio = get_freq_dict()
+    char_ratio = decrease_resolution_of_dict(char_ratio, max_dict_resolution)
+    char_ratio = distribute_characters(char_ratio, max_dict_resolution)
+    with open(dict_file, "wb") as f:
+        pickle.dump(char_ratio, f)
+    colorDict = char_list_to_color_dict(char_ratio)
+    with open(color_dict_file, "wb") as f:
+        pickle.dump(colorDict, f)
 
 
 def main():

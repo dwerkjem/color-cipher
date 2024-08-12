@@ -2,8 +2,8 @@
 
 # Paths are relative to the root of the git repository
 
-# Run pylint on all Python files, excluding the venv directory
-find . -type f -name "*.py" ! -path "./venv/*" ! -path "./.venv/*" ! -path "./code/venv/*" -exec pylint {} +
+# Run pylint on all Python files, excluding the venv directory and __init__.py files
+find . -type f -name "*.py" ! -name "__init__.py" ! -path "./venv/*" ! -path "./.venv/*" ! -path "./code/venv/*" -exec pylint {} +
 
 # Format Python files using black
 black .

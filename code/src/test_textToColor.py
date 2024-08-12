@@ -1,4 +1,11 @@
-from textToColor import *
+from textToColor import (
+    distribute_characters,
+    decrease_resolution_of_dict,
+    calculate_color_depth,
+    get_channel_range,
+    generate_rgb_combinations,
+    char_list_to_color_dict,
+)
 
 
 def test_distribute_characters():

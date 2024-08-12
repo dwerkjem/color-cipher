@@ -1,6 +1,7 @@
+import random
+
 from tableOfValues import key_freq_dict
 from keySystem import weightedRandomChoice, generateKey
-import random
 
 
 def test_weightedRandomChoice():
