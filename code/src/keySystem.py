@@ -65,11 +65,3 @@ def hash_to_ascii_art_pyramid(hash_str):
         index += level_length
 
     return "\n".join(pyramid_art)
-
-
-if __name__ == "__main__":
-    key = generateKey(10)
-    hashed_key = hashKey(key)
-    print(f"Key: {key}")
-    print(f"Hashed Key: {hashed_key}")
-    print(hash_to_ascii_art_pyramid(hashed_key))
