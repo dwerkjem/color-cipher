@@ -1,4 +1,4 @@
-'''
+"""
 This module contains functions for converting text to color. The main function is char_list_to_color_dict, which generates a dictionary mapping each character in a list to a unique RGB color.
 Other functions include distribute_characters, which distributes characters across the dictionary according to their frequencies, and decrease_resolution_of_dict, which decreases the resolution of a frequency dictionary.
 
@@ -21,12 +21,13 @@ char_list = ['a', 'b', 'c']
 color_dict = char_list_to_color_dict(char_list)
 print(color_dict)
 # Output: {(0, 0, 0): 'a', (0, 0, 1): 'b', (0, 0, 2): 'c'}
-'''
+"""
+
 import math
 
 
 def distribute_characters(char_ratio, L):
-    '''
+    """
     Distributes characters based on their frequency ratio.
 
     Args:
@@ -41,7 +42,7 @@ def distribute_characters(char_ratio, L):
     L = 20
     result = distribute_characters(char_ratio, L)
     # Output: ['a', 'b', 'c', 'b', 'c', 'a', 'b', 'c', 'c', 'c', 'a', 'b', 'c', 'b', 'c', 'a', 'b', 'c', 'c', 'c']
-    '''
+    """
     total_ratio = sum(char_ratio.values())
     char_count = {
         char: int((ratio / total_ratio) * L) for char, ratio in char_ratio.items()
@@ -79,7 +80,7 @@ def distribute_characters(char_ratio, L):
 
 
 def decrease_resolution_of_dict(dictionary, maxResolution):
-    '''
+    """
     Decreases the resolution of a frequency dictionary.
 
     Args:
@@ -94,7 +95,7 @@ def decrease_resolution_of_dict(dictionary, maxResolution):
     maxResolution = 40
     reducedDict = decrease_resolution_of_dict(dictionary, maxResolution)
     # Output: {"a": 4, "b": 8, "c": 12}
-    '''
+    """
     totalResolution = sum(dictionary.values())
     if totalResolution <= maxResolution:
         return dictionary
@@ -124,7 +125,7 @@ def decrease_resolution_of_dict(dictionary, maxResolution):
 
 
 def calculate_color_depth(total_colors):
-    '''
+    """
     Calculates the color depth based on the total number of colors.
 
     Args:
@@ -138,13 +139,13 @@ def calculate_color_depth(total_colors):
     color_depth = calculate_color_depth(total_colors)
     # Output : 4
 
-    '''
+    """
     color_depth = math.log2(total_colors) / 3
     return int(color_depth)
 
 
 def get_channel_range(color_depth):
-    '''
+    """
     Returns the range of values for each color channel based on the color depth.
 
     Args:
@@ -157,12 +158,12 @@ def get_channel_range(color_depth):
     color_depth = 8
     channel_range = get_channel_range(color_depth)
     # Output: 256
-    '''
+    """
     return 2**color_depth
 
 
 def generate_rgb_combinations(color_depth):
-    '''
+    """
     Generates all possible RGB combinations for a given color depth.
 
     Args:
@@ -175,7 +176,7 @@ def generate_rgb_combinations(color_depth):
     color_depth = 1
     result = generate_rgb_combinations(color_depth)
     # Output: [(0, 0, 0), (0, 0, 1), (0, 1, 0), (0, 1, 1), (1, 0, 0), (1, 0, 1), (1, 1, 0), (1, 1, 1)]
-    '''
+    """
     max_value = 2**color_depth
     combinations = [
         (r, g, b)

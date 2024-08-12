@@ -1,4 +1,4 @@
-'''
+"""
 Unit tests for key_system.py
 
 These tests cover the following functions:
@@ -22,7 +22,8 @@ Modules:
 
 Usage:
 To run the tests, run `pytest code/src/test_key_system.py` from the root directory.
-'''
+"""
+
 import random
 import hashlib
 
@@ -36,9 +37,9 @@ from key_system import (
 
 
 def test_weightedRandomChoice():
-    '''
+    """
     Test the selection of items from a dictionary based on their weights.
-    '''
+    """
     random.seed(0)
     choices = {"a": 1, "b": 2, "c": 3}
     result = weighted_random_choice(choices, 5)
@@ -54,18 +55,18 @@ def test_weightedRandomChoice():
 
 
 def test_generateKey_length():
-    '''
+    """
     Test the generation of a key of a specified length.
-    '''
+    """
     key_length = 10
     key = generate_key(key_length)
     assert len(key) == key_length
 
 
 def test_generateKey_characters():
-    '''
+    """
     Test the generation of a key with valid characters.
-    '''
+    """
     key_length = 50
     key = generate_key(key_length)
     valid_chars = set(key_freq_dict().keys())
@@ -74,9 +75,9 @@ def test_generateKey_characters():
 
 
 def test_generateKey_seeded():
-    '''
+    """
     Test the generation of a key with a seeded random number generator.
-    '''
+    """
     random.seed(0)
     key_length = 10
     key = generate_key(key_length)
@@ -86,9 +87,9 @@ def test_generateKey_seeded():
 
 
 def test_hashKey():
-    '''
+    """
     Test the hashing of a key using SHA-256.
-    '''
+    """
     key = "test_key"
     hashed_key = hash_key(key)
     expected_hashed_key = hashlib.sha256(key.encode()).hexdigest()
@@ -97,9 +98,9 @@ def test_hashKey():
 
 
 def test_hash_to_ascii_art_pyramid():
-    '''
+    """
     Test the conversion of a hash string to ASCII art in a centered pyramid shape.
-    '''
+    """
     hash_str = "01234567"
     ascii_art = hash_to_ascii_pyramid(hash_str)
     expected_ascii_art = "  @  \n @%% \n #**+"

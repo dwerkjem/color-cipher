@@ -1,4 +1,4 @@
-'''
+"""
 This module contains functions for generating keys, hashing keys, and converting hash strings to ASCII art.
 
 Functions:
@@ -20,7 +20,8 @@ key = generateKey(10)
 hashed_key = hashKey(key)
 ascii_art = hashToAsciiArtPyramid(hashed_key)
 print(ascii_art)
-'''
+"""
+
 import random
 import hashlib
 from table_of_values import key_freq_dict
