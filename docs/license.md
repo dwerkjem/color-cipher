@@ -12,7 +12,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 Permission is hereby granted to use the Software for profit-making ventures only under the following conditions:
 
-1. **Written Consent:** Written consent must be obtained from the owner, Derek R. Neilson, prior to using the Software for any profit-making ventures. To request permission, please contact Derek R. Neilson at <derekrneilson@gmail.com>.
+1. **Written Consent:** Written consent must be obtained from the owner, Derek R. Neilson, before using the Software for any profit-making ventures. To request permission, please contact Derek R. Neilson at <derekrneilson@gmail.com>.
 
 ### Conditions
 
