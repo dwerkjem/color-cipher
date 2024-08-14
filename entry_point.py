@@ -43,6 +43,7 @@ COLOR_DEPTH = 24
 IMAGE_RESOLUTION = (1920, 1080)
 MAX_DICT_RESOLUTION = 2**COLOR_DEPTH
 
+
 def make_cache():
     """
     Generate and cache the frequency and color dictionaries.
@@ -53,7 +54,8 @@ def make_cache():
     char_ratio = get_freq_dict()
     char_ratio = decrease_resolution_of_dict(char_ratio, MAX_DICT_RESOLUTION)
     char_ratio = distribute_characters(char_ratio, MAX_DICT_RESOLUTION)
-    cache_result(f"char_ratio.{COLOR_DEPTH}" , char_ratio)
+    cache_result(f"char_ratio.{COLOR_DEPTH}", char_ratio)
+
 
 def main():
     """
@@ -61,6 +63,7 @@ def main():
     """
     if cache_query(f"char_ratio.{COLOR_DEPTH}") is None:
         make_cache()
+
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,8 @@
 import os
 import pickle
+
 CACHE_LOCATION = "cache"
+
 
 def cache_query(query):
     """
@@ -11,6 +13,7 @@ def cache_query(query):
         with open(cache_file, "rb") as f:
             return pickle.load(f)
     return None
+
 
 def cache_result(query, result):
     """
@@ -27,4 +30,3 @@ def clear_cache():
     """
     for file in os.listdir(CACHE_LOCATION):
         os.remove(os.path.join(CACHE_LOCATION, file))
-
