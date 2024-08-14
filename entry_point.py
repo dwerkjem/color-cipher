@@ -2,27 +2,22 @@
 This is the entry point of the program which generates and caches dictionaries for character frequency and color mapping.
 
 The script performs the following tasks:
-1. Sets configuration parameters such as color depth, image resolution, and the base directory for storing generated tables.
-2. Defines file paths for saving the frequency dictionary and color dictionary.
-3. Implements the `check_cache` function which:
-    a. Creates the base directory if it doesn't exist.
-    b. Generates a frequency dictionary fitted to the specified color depth.
-    c. Reduces the resolution of the frequency dictionary to fit the maximum dictionary resolution.
-    d. Distributes characters across the dictionary according to their frequencies.
-    e. Saves the frequency dictionary to a pickle file.
-    f. Converts the character list to a color dictionary.
-    g. Saves the color dictionary to a pickle file.
-4. Calls the `check_cache` function from the `main` function if the script is executed as the main module.
+1. Imports the required modules.
+2. Defines the color depth and image resolution.
+3. Defines the maximum dictionary resolution based on the color depth.
+4. Defines the `make_cache` function to generate and cache the frequency and color dictionaries.
+5. Defines the `main` function to check and generate the cache.
+6. Executes the `main` function if the script is run as the main module.
 
 Functions:
-- `check_cache()`: Generates and caches the frequency and color dictionaries.
-- `main()`: Calls the `check_cache` function.
-
+- `make_cache()`: Generates and caches the frequency and color dictionaries.
+- `main()`: Main function to check and generate the cache.
 Modules:
 - `os`: Provides functions for interacting with the operating system.
 - `pickle`: Implements binary protocols for serializing and de-serializing a Python object structure.
 - `code.src.tableOfValues`: Contains the `get_freq_dict` function to get the character frequency dictionary.
 - `code.src.textToColor`: Contains the functions `char_list_to_color_dict`, `distribute_characters`, and `decrease_resolution_of_dict` for processing character frequencies and mapping them to colors.
+- `code.src.cache_system`: Contains functions for caching and retrieving data.
 
 Usage:
 To execute the script, simply run it as the main module. The script will generate and cache the required dictionaries for the specified color depth and save them in the configured directory.
