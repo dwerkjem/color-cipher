@@ -8,5 +8,5 @@
 venv
 
 # build files
-/code/build/tables
+/code/out/tables
 .pytest_cache

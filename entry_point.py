@@ -30,7 +30,7 @@ To execute the script, simply run it as the main module. The script will generat
 
 import os
 import pickle
-from src.values_table import get_freq_dict
+from code.src.values_table import get_freq_dict
 from code.src.text_to_color import (
     char_list_to_color_dict,
     distribute_characters,
@@ -40,7 +40,7 @@ from code.src.text_to_color import (
 COLOR_DEPTH = 24
 IMAGE_RESOLUTION = (1920, 1080)
 MAX_DICT_RESOLUTION = 2**COLOR_DEPTH
-BASE_DIR = "code/build/tables"
+BASE_DIR = "code/out/tables"
 dict_file = os.path.join(BASE_DIR, f"dict{COLOR_DEPTH}.pkl")
 color_dict_file = os.path.join(BASE_DIR, f"color_dict{COLOR_DEPTH}.pkl")
 

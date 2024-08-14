@@ -91,7 +91,3 @@ def hash_to_ascii_pyramid(hash_str):
         index += level_length
 
     return "\n".join(pyramid_art)
-
-
-if __name__ == "__main__":
-    print(__doc__)
