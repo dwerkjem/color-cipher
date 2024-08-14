@@ -30,46 +30,37 @@ To execute the script, simply run it as the main module. The script will generat
 
 import os
 import pickle
+
 from code.src.values_table import get_freq_dict
 from code.src.text_to_color import (
     char_list_to_color_dict,
     distribute_characters,
     decrease_resolution_of_dict,
 )
+from code.src.cache_system import cache_query, cache_result, clear_cache
 
 COLOR_DEPTH = 24
 IMAGE_RESOLUTION = (1920, 1080)
 MAX_DICT_RESOLUTION = 2**COLOR_DEPTH
-BASE_DIR = "code/out/tables"
-dict_file = os.path.join(BASE_DIR, f"dict{COLOR_DEPTH}.pkl")
-color_dict_file = os.path.join(BASE_DIR, f"color_dict{COLOR_DEPTH}.pkl")
 
-
-def check_cache():
+def make_cache():
     """
     Generate and cache the frequency and color dictionaries.
     """
-    if not os.path.exists(BASE_DIR):
-        os.makedirs(BASE_DIR)
 
     print(f"Generating tables for color depth {COLOR_DEPTH}...")
     # Fit the dictionary to the color depth
     char_ratio = get_freq_dict()
     char_ratio = decrease_resolution_of_dict(char_ratio, MAX_DICT_RESOLUTION)
     char_ratio = distribute_characters(char_ratio, MAX_DICT_RESOLUTION)
-    with open(dict_file, "wb") as f:
-        pickle.dump(char_ratio, f)
-    colorDict = char_list_to_color_dict(char_ratio)
-    with open(color_dict_file, "wb") as f:
-        pickle.dump(colorDict, f)
-
+    cache_result(f"char_ratio.{COLOR_DEPTH}" , char_ratio)
 
 def main():
     """
     Main function to check and generate the cache.
     """
-    check_cache()
-
+    if cache_query(f"char_ratio.{COLOR_DEPTH}") is None:
+        make_cache()
 
 if __name__ == "__main__":
     main()

@@ -157,7 +157,3 @@ def key_freq_dict():
         dict: frequency dictionary of the values that can be used in the key
     """
     return dict(list(freq_dict.items())[:36])
-
-
-if __name__ == "__main__":
-    print(__doc__)
