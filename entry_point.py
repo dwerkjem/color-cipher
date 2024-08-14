@@ -23,16 +23,12 @@ Usage:
 To execute the script, simply run it as the main module. The script will generate and cache the required dictionaries for the specified color depth and save them in the configured directory.
 """
 
-import os
-import pickle
-
 from code.src.values_table import get_freq_dict
 from code.src.text_to_color import (
-    char_list_to_color_dict,
     distribute_characters,
     decrease_resolution_of_dict,
 )
-from code.src.cache_system import cache_query, cache_result, clear_cache
+from code.src.cache_system import cache_query, cache_result
 
 COLOR_DEPTH = 24
 IMAGE_RESOLUTION = (1920, 1080)
