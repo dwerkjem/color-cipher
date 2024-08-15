@@ -1,5 +1,24 @@
-from PIL import Image
+"""
+Downscale an image to the specified dimensions and save it as a PNG.
+
+Usage: python downscale_image.py <input_path> <output_path> <new_width> <new_height>
+
+Args:
+    input_path (str): The path to the input image.
+    output_path (str): The path to save the downscaled image.
+    new_width (int): The width of the downscaled image.
+    new_height (int): The height of the downscaled image.
+
+Example:
+    python downscale_image.py input.jpg output 100 100
+
+Note:
+    The output image will be saved as a PNG file.
+"""
+
 import sys
+
+from PIL import Image
 
 
 def downscale_image(input_path, output_path, new_width, new_height):
@@ -15,7 +34,7 @@ def downscale_image(input_path, output_path, new_width, new_height):
     # Open the input image
     with Image.open(input_path) as img:
         # Downscale the image
-        downscaled_img = img.resize((new_width, new_height), Image.LANCZOS)
+        downscaled_img = img.resize((new_width, new_height))
         # Ensure the output path has a .png extension
         if not output_path.lower().endswith(".png"):
             output_path += ".png"
