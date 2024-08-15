@@ -7,8 +7,7 @@
 # virtual environment files
 venv
 
-# build files
-/code/out/tables
+# pytest cache
 .pytest_cache
 
 *.pkl
