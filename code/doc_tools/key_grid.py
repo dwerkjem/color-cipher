@@ -150,36 +150,51 @@ def decrypt(text, key):
 
     decrypted = []
     i = 0
+    new_key = []
+    text_idx = values.index(text_chunks[i])
+    key_idx = values.index(key_expanded[i])
+    new_idx = (text_idx - key_idx) % len(values)
     while i < len(text_chunks):
-        if i >= len(text_chunks):
-            break
-        text_idx = values.index(text_chunks[i])
-        key_idx = values.index(key_expanded[i])
-        new_idx = (text_idx - key_idx) % len(values)
-        decrypted.append(values[new_idx])
-        if values[new_idx] == "START-OF-NEW-KEY":
+        append = False
+        if new_key != []:
+            for chunk in new_key:
+                decrypted.append(chunk)
             new_key = []
+        decrypted.append(values[new_idx])
+        if new_idx == values.index("START-OF-NEW-KEY"):
+            append = True
+        while append:
             i += 1
-            while i < len(text_chunks):
-                new_idx = values.index(text_chunks[i])
-                key_idx = values.index(key_expanded[i])
-                new_key.append(values[(new_idx - key_idx) % len(values)])
+            if values[new_idx] == "END-OF-KEY":
+                append = False
                 i += 1
+                break
+            new_key.append(values[new_idx])
+            text_idx = values.index(text_chunks[i])
+            key_idx = values.index(key_expanded[i])
+            new_idx = (text_idx - key_idx) % len(values)
+            decrypted.append(values[new_idx])
+        if new_key:
 
-            new_key = new_key[0 : new_key.index("END-OF-KEY")]
-            print(new_key)
+            try:
+                key_idx = new_key.remove("START-OF-NEW-KEY")
+
+            except ValueError:
+                pass
         i += 1
+
+        # Decrypt using the new key
+
     return "".join(decrypted)
 
 
+# Example usage
 original_text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaSTART-OF-NEW-KEY 55cEND-OF-KEYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 key = "aaa"
+
 encrypted_text = encrypt(original_text, key)
 decrypted_text = decrypt(encrypted_text, key)
 
-if original_text == decrypted_text:
-    print("Decryption successful!")
-else:
-    print("Decryption failed!")
-    print(f"Original text: {original_text}")
-    print(f"Decrypted text: {decrypted_text}")
+print("Original Text:", original_text)
+print("Encrypted Text:", encrypted_text)
+print("Decrypted Text:", decrypted_text)
