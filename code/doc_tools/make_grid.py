@@ -1,3 +1,30 @@
+"""
+This script generates a grid of Unicode characters to be used for encoding and decoding text.
+
+The grid is a 28x28 matrix where the first row and column contain the full names of the characters, and the rest of the cells contain unique Unicode characters.
+
+The script provides functions to encode and decode text using the grid.
+
+Functions:
+- `encode(text)`: Encodes the text using the grid.
+- `decode(text)`: Decodes the text using the grid.
+- `prepare_plain_text(text)`: Prepares the text for encoding by handling characters more appropriately.
+
+Usage:
+The script can be run from the command line with the following arguments:
+- `f` or `t`: Indicates whether the input is from a file or text.
+- The input text or file path.
+- `e` or `d`: Indicates whether to encode or decode the text.
+- `o`: Optional flag to specify an output file.
+- The output file path.
+
+Example:
+To encode text from a file and save the output to a file:
+```
+python make_grid.py f input.txt e o output.txt
+```
+"""
+
 import unicodedata
 import sys
 import numpy as np
@@ -32,6 +59,22 @@ values = [
     "x",
     "y",
     "z",
+    "newline",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    ".",
+    ",",
+    "`",
+    "START OF NEW KEYWORD",
+    "END OF KEYWORD",
 ]
 
 # Create a grid of 28x28 (including headers)
@@ -71,7 +114,7 @@ def encode(text):
     """
     encoded_text = ""
     if len(text) % 2 != 0:
-        text += " "  # Add a space if the length is odd
+        text += " "  # Add a space if the text length is odd
     for i in range(0, len(text), 2):
         row_char = text[i]
         col_char = text[i + 1]
@@ -118,23 +161,9 @@ def prepare_plain_text(text):
         elif char == "\n":
             prepared_text += " newline "
         elif char.isdigit():
-            # Directly handle digits to ensure proper encoding
-
-            # Handle digits by converting them to words
-            digit_words = {
-                "0": "zero",
-                "1": "one",
-                "2": "two",
-                "3": "three",
-                "4": "four",
-                "5": "five",
-                "6": "six",
-                "7": "seven",
-                "8": "eight",
-                "9": "nine",
-            }
-            prepared_text += f" {digit_words[char]} "
-            
+            prepared_text += f" {char} "
+        elif char in [".", ",", "`"]:
+            prepared_text += f" {char} "
         else:
             try:
                 # Get the full Unicode name, handling special cases
@@ -149,7 +178,9 @@ def prepare_plain_text(text):
 args = sys.argv[1:]
 
 if len(args) == 0:
-    print("Usage: python make_grid.py [f | t] [text or file] [e | d] [o ] [output file]")
+    print(
+        "Usage: python make_grid.py [f | t] [text or file] [e | d] [o ] [output file]"
+    )
     sys.exit(1)
 
 if args[0] == "f":
@@ -157,6 +188,7 @@ if args[0] == "f":
         text = file.read()
 else:
     text = args[1]
+
 
 if args[2] == "e":
     encoded_text = encode(prepare_plain_text(text))
