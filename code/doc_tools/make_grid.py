@@ -75,6 +75,7 @@ for row in grid:
 with open("grid.txt", "w") as file:
     for line in formatted_grid:
         file.write(line + "\n")
+<<<<<<< HEAD
 
 
 # Encoding function using the grid to encode the text
@@ -112,3 +113,5 @@ encoded_text = encode(text)
 print("\t".join(encoded_text))
 decoded_text = decode(encoded_text)
 print(f"Decoded text: {decoded_text}")
+=======
+>>>>>>> 349be9333b37b70bf6da750d191ac44923663140

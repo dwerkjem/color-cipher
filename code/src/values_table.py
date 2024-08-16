@@ -152,6 +152,7 @@ values_list_1_I = [
     "END OF SYMBOL",
 ]
 
+
 def get_values_list_1_I():
     """
     Returns the list of values that can be used in the encoding and decoding process with uppercase I
@@ -160,6 +161,8 @@ def get_values_list_1_I():
         list: list of values that can be used in the encoding and decoding process with uppercase I
     """
     return values_list_1_I
+
+
 def get_values_list():
     """
     Returns the list of values that can be used in the encoding and decoding process

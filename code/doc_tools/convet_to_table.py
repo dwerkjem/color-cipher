@@ -69,7 +69,6 @@ values = [
 ]
 
 
-
 # Create binary representation for each value
 binary_representation = [format(i, "06b") for i in range(len(values))]
 
