@@ -1,3 +1,9 @@
+"""
+This script generates a grid of characters to be used for encoding and decoding text.
+The grid is saved to a file called grid.txt, and the encoding and decoding functions are provided.
+The encoding function takes a string of characters and encodes them using the grid.
+The decoding function takes an encoded string and decodes it using the grid.
+"""
 import numpy as np
 import unicodedata
 
@@ -70,3 +76,39 @@ with open("grid.txt", "w") as file:
     for line in formatted_grid:
         file.write(line + "\n")
 
+
+# Encoding function using the grid to encode the text
+def encode(text):
+    encoded_text = ""
+    if len(text) % 2 != 0:
+        text += " "
+    for i in range(0, len(text), 2):
+        row_char = text[i]
+        col_char = text[i + 1]
+        for j in range(1, 27):
+            if grid[j, 0] == row_char:
+                for k in range(1, 27):
+                    if grid[0, k] == col_char:
+                        encoded_text += grid[j, k]
+                        break
+                break
+    return encoded_text
+
+
+def decode(text):
+    decoded_text = ""
+    for char in text:
+        for i in range(1, 27):
+            for j in range(1, 27):
+                if grid[i, j] == char:
+                    decoded_text += grid[i, 0] + grid[0, j]
+                    break
+    return decoded_text
+
+# Test the encoding and decoding functions
+text = input("Enter the text to encode: ")
+encoded_text = encode(text)
+# Print the encoded text with a tab character between each character
+print("\t".join(encoded_text))
+decoded_text = decode(encoded_text)
+print(f"Decoded text: {decoded_text}")
