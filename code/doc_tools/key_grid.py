@@ -166,7 +166,7 @@ def decrypt(text, key):
                 new_key.append(values[(new_idx - key_idx) % len(values)])
                 i += 1
 
-            new_key = new_key[0:new_key.index("END-OF-KEY")]
+            new_key = new_key[0 : new_key.index("END-OF-KEY")]
             print(new_key)
         i += 1
     return "".join(decrypted)
