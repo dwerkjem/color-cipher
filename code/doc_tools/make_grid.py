@@ -164,6 +164,23 @@ def prepare_plain_text(text):
             prepared_text += f" {char} "
         elif char in [".", ",", "`"]:
             prepared_text += f" {char} "
+            # Directly handle digits to ensure proper encoding
+
+            # Handle digits by converting them to words
+            digit_words = {
+                "0": "zero",
+                "1": "one",
+                "2": "two",
+                "3": "three",
+                "4": "four",
+                "5": "five",
+                "6": "six",
+                "7": "seven",
+                "8": "eight",
+                "9": "nine",
+            }
+            prepared_text += f" {digit_words[char]} "
+
         else:
             try:
                 # Get the full Unicode name, handling special cases
