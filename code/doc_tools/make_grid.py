@@ -5,8 +5,10 @@ The encoding function takes a string of characters and encodes them using the gr
 The decoding function takes an encoded string and decodes it using the grid.
 """
 
-import numpy as np
 import unicodedata
+
+import numpy as np
+
 
 # List of values provided
 values = [
@@ -80,6 +82,11 @@ with open("grid.txt", "w") as file:
 
 # Encoding function using the grid to encode the text
 def encode(text):
+    """
+    Encode the text using the grid
+    :param text: The text to encode
+    :return: The encoded text
+    """
     encoded_text = ""
     if len(text) % 2 != 0:
         text += " "
@@ -97,6 +104,11 @@ def encode(text):
 
 
 def decode(text):
+    """
+    Decode the text using the grid
+    :param text: The text to decode
+    :return: The decoded text
+    """
     decoded_text = ""
     for char in text:
         for i in range(1, 27):

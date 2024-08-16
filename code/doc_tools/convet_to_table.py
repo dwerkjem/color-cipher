@@ -1,3 +1,9 @@
+"""
+this script is used to convert the values to binary representation
+and save them in a table. The table is then used to encode and decode text.
+
+"""
+
 import pandas as pd
 
 # List of values
