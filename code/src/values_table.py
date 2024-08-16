@@ -78,7 +78,88 @@ values_list = [
     "END OF SYMBOL",
 ]
 
+values_list_1_I = [
+    " ",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "0",
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    "END OF LINE",
+    "END OF TEXT",
+    "START OF TEXT",
+    "blank",
+    "START OF NEW KEY",
+    "END OF NEW KEY",
+    "START OF SYMBOL",
+    "END OF SYMBOL",
+]
 
+def get_values_list_1_I():
+    """
+    Returns the list of values that can be used in the encoding and decoding process with uppercase I
+
+    Returns:
+        list: list of values that can be used in the encoding and decoding process with uppercase I
+    """
+    return values_list_1_I
 def get_values_list():
     """
     Returns the list of values that can be used in the encoding and decoding process

@@ -3,16 +3,6 @@ import pandas as pd
 # List of values
 values = [
     " ",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "0",
     "a",
     "b",
     "c",
@@ -39,16 +29,46 @@ values = [
     "x",
     "y",
     "z",
-    "END OF LINE",
-    "END OF TEXT",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+    "START OF NUMBER",
+    "END OF NUMBER",
     "START OF TEXT",
-    "blank",
+    "END OF TEXT",
     "START OF NEW KEY",
     "END OF NEW KEY",
-    "UPPERCASE",
     "START OF SYMBOL",
     "END OF SYMBOL",
+    "BLANK",
+    ".",
+    ",",
 ]
+
+
 
 # Create binary representation for each value
 binary_representation = [format(i, "06b") for i in range(len(values))]
@@ -56,4 +76,4 @@ binary_representation = [format(i, "06b") for i in range(len(values))]
 # Create DataFrame
 binary_table = pd.DataFrame({"Value": values, "Binary": binary_representation})
 
-print(binary_table)
+print(binary_table.to_string(index=False))

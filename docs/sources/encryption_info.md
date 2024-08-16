@@ -8,8 +8,7 @@
       - [Method of Encryption](#method-of-encryption)
       - [Advantages of Color Cipher Encryption](#advantages-of-color-cipher-encryption)
       - [Limitations of Color Cipher Encryption](#limitations-of-color-cipher-encryption)
-    - [in-depth](#in-depth)
-      - [Data Encoding](#data-encoding)
+      - [Variations of Color Cipher Encryption](#variations-of-color-cipher-encryption)
 
 ## Encryption
 
@@ -52,90 +51,19 @@ The Color Cipher encryption method involves the following steps:
 - **Key Management**: The security of the encryption relies on the strength of the key used.
 - **Data Loss**: If the image is compressed or altered, the hidden data may be lost.
 
-### in-depth
+For more information on the Color Cipher encryption method, you can refer to the following [method documentation](../method/method.md).
 
-#### Data Encoding
+Inspired by the [AES encryption method](https://www.techtarget.com/searchsecurity/definition/Advanced-Encryption-Standard#:~:text=The%20Advanced%20Encryption%20Standard%20(AES)%20is%20a%20symmetric%20block%20cipher,cybersecurity%20and%20electronic%20data%20protection.).
 
-The data to be encrypted (plaintext) is encoded into binary format using a 6 bit encoding scheme. Each character in the plaintext is encoded into a 6 bit binary value.
+#### Variations of Color Cipher Encryption
 
-The encoding scheme used in Color Cipher encryption is as follows:
+There are several variations of the Color Cipher encryption method that can be used to enhance security and obfuscation. From least complex to most complex, these variations include:
 
-```plaintext
-               Value  Binary
-0                     000000
-1                  1  000001
-2                  2  000010
-3                  3  000011
-4                  4  000100
-5                  5  000101
-6                  6  000110
-7                  7  000111
-8                  8  001000
-9                  9  001001
-10                 0  001010
-11                 a  001011
-12                 b  001100
-13                 c  001101
-14                 d  001110
-15                 e  001111
-16                 f  010000
-17                 g  010001
-18                 h  010010
-19                 i  010011
-20                 j  010100
-21                 k  010101
-22                 l  010110
-23                 m  010111
-24                 n  011000
-25                 o  011001
-26                 p  011010
-27                 q  011011
-28                 r  011100
-29                 s  011101
-30                 t  011110
-31                 u  011111
-32                 v  100000
-33                 w  100001
-34                 x  100010
-35                 y  100011
-36                 z  100100
-37       END OF LINE  100101
-38       END OF TEXT  100110
-39     START OF TEXT  100111
-40             blank  101000
-41  START OF NEW KEY  101001
-42    END OF NEW KEY  101010
-43         UPPERCASE  101011
-44   START OF SYMBOL  101100
-45     END OF SYMBOL  101101
-46        SKIP AHEAD  101110
-47            REPEAT  101111
-```
+1. **1 I**: First Insecure Variation, Basic encryption with no key.
+  - **Security Level**: Low
+  - **Complexity**: Low
+  - **Key**: None
+  - **Use Case**: Basic data hiding for non-sensitive information. Not recommended for sensitive data. maybe useful for educational purposes.
+  - **No Input Image**: The data is hidden in a randomly generated image.
 
-Each Color has 3 values (RGB) and each value can store 8 bits of data. So, each pixel can store 24 bits of data. Or 4 characters of the encoded data.
-
-The Colors need to be converted to an integer to store the data.
-
-To convert a color represented by its Red, Green, and Blue (RGB) components in 24-bit color depth to an integer, you would use the formula:
-
-\[
-\text{Color\_int} = (R \times 2^{16}) + (G \times 2^8) + B
-\]
-
-Where:
-- \( R \) is the red component (8 bits)
-- \( G \) is the green component (8 bits)
-- \( B \) is the blue component (8 bits)
-
-To convert an integer to a color represented by its Red, Green, and Blue (RGB) components in 24-bit color depth, you would use the formula:
-
-\[
-R = \left(\frac{\text{Color\_int}}{2^{16}}\right) \mod 256
-\]
-\[
-G = \left(\frac{\text{Color\_int}}{2^{8}}\right) \mod 256
-\]
-\[
-B = \text{Color\_int} \mod 256
-\]
-
+<!-- TODO: Add more variations.  -->
