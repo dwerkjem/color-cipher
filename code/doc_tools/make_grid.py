@@ -4,6 +4,7 @@ The grid is saved to a file called grid.txt, and the encoding and decoding funct
 The encoding function takes a string of characters and encodes them using the grid.
 The decoding function takes an encoded string and decodes it using the grid.
 """
+
 import numpy as np
 import unicodedata
 
@@ -75,7 +76,6 @@ for row in grid:
 with open("grid.txt", "w") as file:
     for line in formatted_grid:
         file.write(line + "\n")
-<<<<<<< HEAD
 
 
 # Encoding function using the grid to encode the text
@@ -106,6 +106,7 @@ def decode(text):
                     break
     return decoded_text
 
+
 # Test the encoding and decoding functions
 text = input("Enter the text to encode: ")
 encoded_text = encode(text)
@@ -113,5 +114,3 @@ encoded_text = encode(text)
 print("\t".join(encoded_text))
 decoded_text = decode(encoded_text)
 print(f"Decoded text: {decoded_text}")
-=======
->>>>>>> 349be9333b37b70bf6da750d191ac44923663140
