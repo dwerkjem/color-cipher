@@ -69,4 +69,3 @@ for row in grid:
 with open("grid.txt", "w") as file:
     for line in formatted_grid:
         file.write(line + "\n")
-
