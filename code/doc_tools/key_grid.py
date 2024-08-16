@@ -151,45 +151,51 @@ def decrypt(text, key):
     decrypted = []
     i = 0
     new_key = []
-    text_idx = values.index(text_chunks[i])
-    key_idx = values.index(key_expanded[i])
-    new_idx = (text_idx - key_idx) % len(values)
+    key_count = 0
     while i < len(text_chunks):
         append = False
-        if new_key != []:
-            for chunk in new_key:
-                decrypted.append(chunk)
-            new_key = []
-        decrypted.append(values[new_idx])
+        if not new_key:
+            text_idx = values.index(text_chunks[i])
+            key_idx = values.index(key_expanded[i])
+            new_idx = (text_idx - key_idx) % len(values)
+            decrypted.append(values[new_idx])
+        else:
+            # expand the new key
+            new_key_expanded = expand_key(new_key, text_chunks)
+            text_idx = values.index(text_chunks[i])
+            key_idx = values.index(new_key_expanded[i])
+            new_idx = (text_idx - key_idx) % len(values)
+            decrypted.append(values[new_idx])
+
         if new_idx == values.index("START-OF-NEW-KEY"):
+
             append = True
         while append:
-            i += 1
+
             if values[new_idx] == "END-OF-KEY":
                 append = False
-                i += 1
                 break
+            i += 1
             new_key.append(values[new_idx])
             text_idx = values.index(text_chunks[i])
             key_idx = values.index(key_expanded[i])
             new_idx = (text_idx - key_idx) % len(values)
             decrypted.append(values[new_idx])
         if new_key:
-
             try:
-                key_idx = new_key.remove("START-OF-NEW-KEY")
+                new_key.remove("START-OF-NEW-KEY")
 
             except ValueError:
                 pass
+
+            print(new_key)
+            key_expanded = expand_key(new_key, text_chunks)
+            new_key = []
+
         i += 1
-
-        # Decrypt using the new key
-
     return "".join(decrypted)
-
-
 # Example usage
-original_text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaSTART-OF-NEW-KEY 55cEND-OF-KEYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+original_text = "12345START-OF-NEW-KEY 55c END-OF-KEY 12345 12345 START-OF-NEW-KEYff END-OF-KEY 12345 12345 START-OF-NEW-KEYtestEND-OF-KEY fgdf 12345"
 key = "aaa"
 
 encrypted_text = encrypt(original_text, key)
@@ -198,3 +204,8 @@ decrypted_text = decrypt(encrypted_text, key)
 print("Original Text:", original_text)
 print("Encrypted Text:", encrypted_text)
 print("Decrypted Text:", decrypted_text)
+
+if original_text == decrypted_text:
+    print("Decryption successful!")
+else:
+    print("Decryption failed!")
