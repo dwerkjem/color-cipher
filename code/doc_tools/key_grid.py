@@ -194,6 +194,8 @@ def decrypt(text, key):
 
         i += 1
     return "".join(decrypted)
+
+
 # Example usage
 original_text = "12345START-OF-NEW-KEY 55c END-OF-KEY 12345 12345 START-OF-NEW-KEYff END-OF-KEY 12345 12345 START-OF-NEW-KEYtestEND-OF-KEY fgdf 12345"
 key = "aaa"
