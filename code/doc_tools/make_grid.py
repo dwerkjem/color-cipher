@@ -134,7 +134,7 @@ def prepare_plain_text(text):
                 "9": "nine",
             }
             prepared_text += f" {digit_words[char]} "
-            
+
         else:
             try:
                 # Get the full Unicode name, handling special cases
@@ -149,7 +149,9 @@ def prepare_plain_text(text):
 args = sys.argv[1:]
 
 if len(args) == 0:
-    print("Usage: python make_grid.py [f | t] [text or file] [e | d] [o ] [output file]")
+    print(
+        "Usage: python make_grid.py [f | t] [text or file] [e | d] [o ] [output file]"
+    )
     sys.exit(1)
 
 if args[0] == "f":
