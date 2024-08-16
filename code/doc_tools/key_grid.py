@@ -151,32 +151,35 @@ def decrypt(text, key):
     decrypted = []
     i = 0
     while i < len(text_chunks):
+        if i >= len(text_chunks):
+            break
         text_idx = values.index(text_chunks[i])
         key_idx = values.index(key_expanded[i])
         new_idx = (text_idx - key_idx) % len(values)
         decrypted.append(values[new_idx])
-        i += 1
         if values[new_idx] == "START-OF-NEW-KEY":
-            print("START-OF-NEW-KEY")
             new_key = []
-            while i < len(text_chunks) and text_chunks[i] != "END-OF-KEY":
-                new_key.append(text_chunks[i])
-                i += 1
             i += 1
-            print("new_key", new_key)
-            key_idx = "".join(new_key)
-            key_expanded = expand_key(key_idx, text_chunks)
-            continue
+            while i < len(text_chunks):
+                new_idx = values.index(text_chunks[i])
+                key_idx = values.index(key_expanded[i])
+                new_key.append(values[(new_idx - key_idx) % len(values)])
+                i += 1
 
+            new_key = new_key[0:new_key.index("END-OF-KEY")]
+            print(new_key)
+        i += 1
     return "".join(decrypted)
 
 
 original_text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaSTART-OF-NEW-KEY 55cEND-OF-KEYaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 key = "aaa"
 encrypted_text = encrypt(original_text, key)
+decrypted_text = decrypt(encrypted_text, key)
 
-print("Original text:", original_text)
-print("Encrypted text:", encrypted_text)
-print("Decrypted text:", decrypt(encrypted_text, key))
-
-print("Original text == Decrypted text:", original_text == decrypt(encrypted_text, key))
+if original_text == decrypted_text:
+    print("Decryption successful!")
+else:
+    print("Decryption failed!")
+    print(f"Original text: {original_text}")
+    print(f"Decrypted text: {decrypted_text}")
