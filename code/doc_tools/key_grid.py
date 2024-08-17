@@ -12,6 +12,7 @@ To encode text, use the `encode` function. To decode text, use the `decode` func
 """
 
 import sys
+import random
 import unicodedata
 
 values = [
@@ -86,6 +87,47 @@ def expand_key(key, text):
     Expand the key to fit the text length.
     """
     return key * (len(text) // len(key)) + key[: len(text) % len(key)]
+
+
+def gen_key(length):
+    """
+    Generate a key for the text.
+    """
+    key = []
+    for _ in range(length):
+        key.append(random.choice(values[0:-2]))
+    return "".join(key)
+
+
+def insert_key(text, count, key_length=16):
+    """
+    Insert a new key into the text every `count` characters.
+
+    Parameters:
+    - text (str): The text where the key will be inserted.
+    - count (int): The number of characters between each key insertion.
+    - key_length (int): The length of the key to generate.
+
+    Returns:
+    - str: The text with the inserted keys.
+    """
+    # Convert the text to a list to allow insertion of keys
+    text = list(text)
+    i = 0
+
+    while i < len(text):
+        # Generate a new random key for each insertion
+        key = gen_key(key_length)
+        wrapped_key = "S" + key + "E"
+
+        # Insert the key at the current position
+        text.insert(i, wrapped_key)
+
+        # Move the index forward by the count and the length of the inserted key
+        i += count + len(wrapped_key)
+
+    # Convert the list back to a string and return it
+    return "".join(text)
 
 
 def encrypt(text, key):
@@ -214,7 +256,7 @@ def parse_text(text):
         else:
             try:
                 char_name = unicodedata.name(char)
-                simplified_name = char_name.lower()
+                simplified_name = char_name.lower().replace("-", " ")
                 yield f"{simplified_name}"
             except ValueError:
                 pass
@@ -224,7 +266,7 @@ arguments = sys.argv[1:]
 
 if len(arguments) < 2:
     print(
-        "Usage: python key_grid.py [f | t] [text or file] [key] [e | d] [o] [output file]"
+        "Usage: python key_grid.py [f | t] [text or file] [key] [e | d] [o | v | ov] [output file]"
     )
     sys.exit(1)
 
@@ -241,6 +283,7 @@ text = "".join(text).lower()
 key = arguments[2]
 
 if arguments[3] == "e":
+    text = insert_key(text, 10)
     encrypted_text = encrypt(text, key)
     if len(arguments) > 4 and arguments[4] == "o":
         with open(arguments[5], "w") as file:
@@ -260,6 +303,3 @@ if len(arguments) > 4 and arguments[4] == "o":
     with open(arguments[5], "w") as file:
         file.write(encrypted_text)
     print(encrypted_text)
-
-# Example usage:
-# python key_grid.py t "hello world" "key" e o "encrypted.txt"
