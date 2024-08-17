@@ -11,6 +11,9 @@ Usage:
 To encode text, use the `encode` function. To decode text, use the `decode` function.
 """
 
+import sys
+import unicodedata
+
 values = [
     " ",
     "a",
@@ -53,8 +56,8 @@ values = [
     ".",
     ",",
     "`",
-    "S",
-    "E",
+    "S",  # Start of key
+    "E",  # End of key
 ]
 
 
@@ -196,18 +199,67 @@ def decrypt(text, key):
     return "".join(decrypted)
 
 
-original_text = input("Enter the text to encrypt: ").lower()
-key = input("Enter the encryption key: ").lower()
+def parse_text(text):
+    """
+    Parse the text to replace special characters with their names.
+    """
+    for char in text:
+        if char == "\n":
+            yield "newline"
+        elif char in values:
+            yield f"{char}"
+
+        elif char.lower() in values:
+            yield f"{char.lower()}"
+        else:
+            try:
+                char_name = unicodedata.name(char)
+                simplified_name = char_name.lower()
+                yield f"{simplified_name}"
+            except ValueError:
+                pass
 
 
-encrypted_text = encrypt(original_text, key)
-decrypted_text = decrypt(encrypted_text, key)
+arguments = sys.argv[1:]
 
-print("Original Text:", original_text)
-print("Encrypted Text:", encrypted_text)
-print("Decrypted Text:", decrypted_text)
+if len(arguments) < 2:
+    print(
+        "Usage: python key_grid.py [f | t] [text or file] [key] [e | d] [o] [output file]"
+    )
+    sys.exit(1)
 
-if original_text == decrypted_text:
-    print("Decryption successful!")
+if arguments[0] == "f":
+    with open(arguments[1], "r") as file:
+        text = file.read()
 else:
-    print("Decryption failed!")
+    text = arguments[1]
+
+text = list(parse_text(text=text))
+text = "".join(text).lower()
+
+
+key = arguments[2]
+
+if arguments[3] == "e":
+    encrypted_text = encrypt(text, key)
+    if len(arguments) > 4 and arguments[4] == "o":
+        with open(arguments[5], "w") as file:
+            file.write(encrypted_text)
+    else:
+        print(encrypted_text)
+
+if arguments[3] == "d":
+    decrypted_text = decrypt(text, key)
+    if len(arguments) > 4 and arguments[4] == "o":
+        with open(arguments[5], "w") as file:
+            file.write(decrypted_text)
+    else:
+        print(decrypted_text)
+
+if len(arguments) > 4 and arguments[4] == "o":
+    with open(arguments[5], "w") as file:
+        file.write(encrypted_text)
+    print(encrypted_text)
+
+# Example usage:
+# python key_grid.py t "hello world" "key" e o "encrypted.txt"
