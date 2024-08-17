@@ -53,8 +53,8 @@ values = [
     ".",
     ",",
     "`",
-    "START-OF-NEW-KEY",
-    "END-OF-KEY",
+    "S",
+    "E",
 ]
 
 
@@ -64,10 +64,10 @@ def chunker(text):
     """
     i = 0
     while i < len(text):
-        if text[i : i + 16] == "START-OF-NEW-KEY":
+        if text[i : i + 16] == "S":
             yield text[i : i + 16]
             i += 16
-        elif text[i : i + 10] == "END-OF-KEY":
+        elif text[i : i + 10] == "E":
             yield text[i : i + 10]
             i += 10
         elif text[i : i + 7] == "newline":
@@ -99,18 +99,18 @@ def encrypt(text, key):
     i = 0
 
     while i < len(text_chunks):
-        if text_chunks[i] == "START-OF-NEW-KEY":
-            to_encrypt = ["START-OF-NEW-KEY"]
+        if text_chunks[i] == "S":
+            to_encrypt = ["S"]
             i += 1
 
-            # Collect the new key value within the "START-OF-NEW-KEY" and "END-OF-KEY" markers
+            # Collect the new key value within the "S" and "E" markers
             new_key = []
-            while i < len(text_chunks) and text_chunks[i] != "END-OF-KEY":
+            while i < len(text_chunks) and text_chunks[i] != "E":
                 new_key.append(text_chunks[i])
                 to_encrypt.append(text_chunks[i])
                 i += 1
-            to_encrypt.append("END-OF-KEY")
-            i += 1  # Move past "END-OF-KEY"
+            to_encrypt.append("E")
+            i += 1  # Move past "E"
 
             # Encrypt the to_encrypt list without recursion
             for chunk in to_encrypt:
@@ -123,8 +123,8 @@ def encrypt(text, key):
                     encrypted.append(values[new_idx])
                 else:
                     encrypted.append(chunk)
-            key_idx = to_encrypt.remove("START-OF-NEW-KEY")
-            key_idx = to_encrypt.remove("END-OF-KEY")
+            key_idx = to_encrypt.remove("S")
+            key_idx = to_encrypt.remove("E")
             key_idx = "".join(to_encrypt)
             key_expanded = expand_key(key_idx, text_chunks)
             continue
@@ -151,7 +151,6 @@ def decrypt(text, key):
     decrypted = []
     i = 0
     new_key = []
-    key_count = 0
     while i < len(text_chunks):
         append = False
         if not new_key:
@@ -165,14 +164,13 @@ def decrypt(text, key):
             text_idx = values.index(text_chunks[i])
             key_idx = values.index(new_key_expanded[i])
             new_idx = (text_idx - key_idx) % len(values)
-            decrypted.append(values[new_idx])
 
-        if new_idx == values.index("START-OF-NEW-KEY"):
+        if new_idx == values.index("S"):
 
             append = True
         while append:
 
-            if values[new_idx] == "END-OF-KEY":
+            if values[new_idx] == "E":
                 append = False
                 break
             i += 1
@@ -183,11 +181,13 @@ def decrypt(text, key):
             decrypted.append(values[new_idx])
         if new_key:
             try:
-                new_key.remove("START-OF-NEW-KEY")
+                new_key.remove("S")
 
             except ValueError:
                 pass
 
+            if len(new_key) > len(text_chunks):
+                new_key = new_key[: len(text_chunks)]
             print(new_key)
             key_expanded = expand_key(new_key, text_chunks)
             new_key = []
@@ -196,9 +196,9 @@ def decrypt(text, key):
     return "".join(decrypted)
 
 
-# Example usage
-original_text = "12345START-OF-NEW-KEY 55c END-OF-KEY 12345 12345 START-OF-NEW-KEYff END-OF-KEY 12345 12345 START-OF-NEW-KEYtestEND-OF-KEY fgdf 12345"
-key = "aaa"
+original_text = input("Enter the text to encrypt: ").lower()
+key = input("Enter the encryption key: ").lower()
+
 
 encrypted_text = encrypt(original_text, key)
 decrypted_text = decrypt(encrypted_text, key)
