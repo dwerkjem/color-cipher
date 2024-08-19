@@ -59,7 +59,7 @@ values = [
     "x",
     "y",
     "z",
-    "newline",
+    "\n",
     "0",
     "1",
     "2",
@@ -73,8 +73,6 @@ values = [
     ".",
     ",",
     "`",
-    "START OF NEW KEYWORD",
-    "END OF KEYWORD",
 ]
 
 # Create a grid of 28x28 (including headers)

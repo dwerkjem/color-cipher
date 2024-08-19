@@ -43,7 +43,7 @@ values = [
     "x",
     "y",
     "z",
-    "newline",
+    "N",
     "0",
     "1",
     "2",
@@ -74,7 +74,7 @@ def chunker(text):
         elif text[i : i + 10] == "E":
             yield text[i : i + 10]
             i += 10
-        elif text[i : i + 7] == "newline":
+        elif text[i : i + 7] == "N":
             yield text[i : i + 7]
             i += 7
         else:
@@ -187,57 +187,25 @@ def decrypt(text, key):
     """
     Decrypt the text using a key grid.
     """
-    key_chunks = list(chunker(key))
-    text_chunks = list(chunker(text))
-
-    # Fit the key into the text
-    key_expanded = expand_key(key_chunks, text_chunks)
-
-    decrypted = []
-    i = 0
+    # there id no need to chunk the key or the text
+    current_key = key
     new_key = []
-    while i < len(text_chunks):
-        append = False
-        if not new_key:
-            text_idx = values.index(text_chunks[i])
-            key_idx = values.index(key_expanded[i])
-            new_idx = (text_idx - key_idx) % len(values)
-            decrypted.append(values[new_idx])
-        else:
-            # expand the new key
-            new_key_expanded = expand_key(new_key, text_chunks)
-            text_idx = values.index(text_chunks[i])
-            key_idx = values.index(new_key_expanded[i])
-            new_idx = (text_idx - key_idx) % len(values)
-
-        if new_idx == values.index("S"):
-
-            append = True
-        while append:
-
-            if values[new_idx] == "E":
-                append = False
-                break
-            i += 1
-            new_key.append(values[new_idx])
-            text_idx = values.index(text_chunks[i])
-            key_idx = values.index(key_expanded[i])
-            new_idx = (text_idx - key_idx) % len(values)
-            decrypted.append(values[new_idx])
-        if new_key:
-            try:
-                new_key.remove("S")
-
-            except ValueError:
-                pass
-
-            if len(new_key) > len(text_chunks):
-                new_key = new_key[: len(text_chunks)]
-            print(new_key)
-            key_expanded = expand_key(new_key, text_chunks)
+    decrypted = []
+    for i in range(len(text)):
+        key_part = current_key[i % len(key)]
+        current_char =(values[(values.index(text[i]) - values.index(key_part)) % len(values)])
+        if current_char == "S":
             new_key = []
-
-        i += 1
+            i += 1
+            while i < len(text) and text[i] != "E":
+                new_key.append(text[i])
+                i += 1
+            i += 1
+            current_key = "".join(new_key)
+            print(current_key)
+            continue
+        else:
+            decrypted.append(current_char)
     return "".join(decrypted)
 
 
@@ -264,42 +232,55 @@ def parse_text(text):
 
 arguments = sys.argv[1:]
 
-if len(arguments) < 2:
+if len(arguments) < 1:
     print(
         "Usage: python key_grid.py [f | t] [text or file] [key] [e | d] [o | v | ov] [output file]"
     )
     sys.exit(1)
 
+# test case
+
+
 if arguments[0] == "f":
     with open(arguments[1], "r") as file:
         text = file.read()
-else:
+elif arguments[0] == "t" :
     text = arguments[1]
-
-text = list(parse_text(text=text))
-text = "".join(text).lower()
-
-
-key = arguments[2]
-
-if arguments[3] == "e":
-    text = insert_key(text, 10)
+else:
+    text = "this is a testSky2E9jderekj"
+    key = "key"
     encrypted_text = encrypt(text, key)
+    decrypted_text = decrypt(encrypted_text, key)
+    print(f"Original text: {text}")
+    print(f"Encrypted text: {encrypted_text}")
+    print(f"Decrypted text: {decrypted_text}")
+    sys.exit(0)
+
+if len(arguments) < 4:
+    text = list(parse_text(text=text))
+    text = "".join(text).lower()
+
+
+    key = arguments[2]
+
+    if arguments[3] == "e":
+        text = insert_key(text, 10)
+        encrypted_text = encrypt(text, key)
+        if len(arguments) > 4 and arguments[4] == "o":
+            with open(arguments[5], "w") as file:
+                file.write(encrypted_text)
+        else:
+            print(encrypted_text)
+
+    if arguments[3] == "d":
+        decrypted_text = decrypt(text, key)
+        if len(arguments) > 4 and arguments[4] == "o":
+            with open(arguments[5], "w") as file:
+                file.write(decrypted_text)
+        else:
+            print(decrypted_text)
+
     if len(arguments) > 4 and arguments[4] == "o":
         with open(arguments[5], "w") as file:
             file.write(encrypted_text)
-    else:
         print(encrypted_text)
-
-if arguments[3] == "d":
-    decrypted_text = decrypt(text, key)
-    if len(arguments) > 4 and arguments[4] == "o":
-        with open(arguments[5], "w") as file:
-            file.write(decrypted_text)
-    else:
-        print(decrypted_text)
-
-if len(arguments) > 4 and arguments[4] == "o":
-    with open(arguments[5], "w") as file:
-        file.write(encrypted_text)
-    print(encrypted_text)
