@@ -193,7 +193,9 @@ def decrypt(text, key):
     decrypted = []
     for i in range(len(text)):
         key_part = current_key[i % len(key)]
-        current_char =(values[(values.index(text[i]) - values.index(key_part)) % len(values)])
+        current_char = values[
+            (values.index(text[i]) - values.index(key_part)) % len(values)
+        ]
         if current_char == "S":
             new_key = []
             i += 1
@@ -244,7 +246,7 @@ if len(arguments) < 1:
 if arguments[0] == "f":
     with open(arguments[1], "r") as file:
         text = file.read()
-elif arguments[0] == "t" :
+elif arguments[0] == "t":
     text = arguments[1]
 else:
     text = "this is a testSky2E9jderekj"
@@ -259,7 +261,6 @@ else:
 if len(arguments) < 4:
     text = list(parse_text(text=text))
     text = "".join(text).lower()
-
 
     key = arguments[2]
 
