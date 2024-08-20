@@ -157,11 +157,11 @@ def prepare_plain_text(text):
         elif char == " ":
             prepared_text += char  # Preserve spaces if needed
         elif char == "\n":
-            prepared_text += " newline "
+            prepared_text += "\n"
         elif char.isdigit():
             prepared_text += f" {char} "
         elif char in [".", ",", "`"]:
-            prepared_text += f" {char} "
+            prepared_text += f" {char} " 
             # Directly handle digits to ensure proper encoding
 
             # Handle digits by converting them to words
