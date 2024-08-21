@@ -126,7 +126,7 @@ values = [
     "\\",
     "|",
     "_",
-    ]
+]
 
 # Create a grid of 93x93 (including headers)
 grid = np.zeros((93, 93), dtype=object)
@@ -138,10 +138,6 @@ for i in range(92):
 # Fill the grid from 1 to 92 row 0 with the values full name
 for i in range(92):
     grid[0, i + 1] = values[i]
-
-import unicodedata
-import numpy as np
-
 
 # Initialize the starting codepoint
 current_codepoint = 1  # Starting from the first Unicode code point
@@ -191,6 +187,7 @@ with open("grid.txt", "w") as file:
             file.write(" ")
         file.write("\n")
 
+
 # Encoding function using the grid to encode the text
 def encode(text):
     """
@@ -212,6 +209,7 @@ def encode(text):
                         break
                 break
     return encoded_text
+
 
 def decode(text):
     """
@@ -258,6 +256,7 @@ def prepare_plain_text(text):
                 pass  # Skip characters that don't have a Unicode name
     return prepared_text
 
+
 if __name__ == "__main__":
 
     args = sys.argv[1:]
@@ -273,7 +272,6 @@ if __name__ == "__main__":
             text = file.read()
     else:
         text = args[1]
-
 
     if args[2] == "e":
         encoded_text = encode(prepare_plain_text(text))
