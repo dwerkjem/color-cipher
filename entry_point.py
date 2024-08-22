@@ -24,11 +24,6 @@ Usage:
 To execute the script, simply run it as the main module. The script will generate and cache the required dictionaries for the specified color depth and save them in the configured directory.
 """
 
-from code.src.values_table import get_freq_dict
-from code.src.text_to_color import distribute_characters, decrease_resolution_of_dict
-from code.src.cache_system import cache_query, cache_result
-from code.src.translation_layer import generate_image_from_text
-
 COLOR_DEPTH = 24
 IMAGE_RESOLUTION = (1920, 1080)
 MAX_DICT_RESOLUTION = 2**COLOR_DEPTH
@@ -40,26 +35,12 @@ def make_cache():
     """
     print(f"Generating tables for color depth {COLOR_DEPTH}...")
     # Fit the dictionary to the color depth
-    char_ratio = get_freq_dict()
-    char_ratio = decrease_resolution_of_dict(char_ratio, MAX_DICT_RESOLUTION)
-    char_ratio = distribute_characters(char_ratio, MAX_DICT_RESOLUTION)
-    cache_result(f"char_dict.{COLOR_DEPTH}", char_ratio)
 
 
 def main():
     """
     Main function to check and generate the cache.
     """
-    if cache_query(f"char_dict.{COLOR_DEPTH}") is None:
-        make_cache()
-
-    color_dict = cache_query(f"char_dict.{COLOR_DEPTH}")
-
-    text = input("Enter text: ")
-    input_image = input("Enter input image path: ")
-    output_image = input("Enter output image name: ")
-    average_diff = generate_image_from_text(text, color_dict, input_image, output_image)
-    print(f"Average difference: {average_diff}")
 
 
 if __name__ == "__main__":

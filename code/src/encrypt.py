@@ -191,7 +191,7 @@ def decrypt(text, key):
     current_key = key
     new_key = []
     decrypted = []
-    for i in range(len(text)):
+    for i in len(text):
         key_part = current_key[i % len(key)]
         current_char = values[
             (values.index(text[i]) - values.index(key_part)) % len(values)
@@ -206,8 +206,6 @@ def decrypt(text, key):
             current_key = "".join(new_key)
             print(current_key)
             continue
-        else:
-            decrypted.append(current_char)
     return "".join(decrypted)
 
 
@@ -232,56 +230,46 @@ def parse_text(text):
                 pass
 
 
-arguments = sys.argv[1:]
+if __name__ == "__main__":
+    arguments = sys.argv[1:]
 
-if len(arguments) < 1:
-    print(
-        "Usage: python key_grid.py [f | t] [text or file] [key] [e | d] [o | v | ov] [output file]"
-    )
-    sys.exit(1)
-
-# test case
-
-
-if arguments[0] == "f":
-    with open(arguments[1], "r") as file:
-        text = file.read()
-elif arguments[0] == "t":
+    if len(arguments) < 4:
+        print(
+            "Usage: python key_grid.py [f | t] [text or file] [key] [e | d] [output_file]"
+        )
+        sys.exit(1)
+    mode = arguments[0]
     text = arguments[1]
-else:
-    text = "this is a testSky2E9jderekj"
-    key = "key"
-    encrypted_text = encrypt(text, key)
-    decrypted_text = decrypt(encrypted_text, key)
-    print(f"Original text: {text}")
-    print(f"Encrypted text: {encrypted_text}")
-    print(f"Decrypted text: {decrypted_text}")
-    sys.exit(0)
-
-if len(arguments) < 4:
-    text = list(parse_text(text=text))
-    text = "".join(text).lower()
-
     key = arguments[2]
 
+    if mode == "f":
+        with open(text, "r") as file:
+            text = file.read()
+    elif mode == "t":
+        pass
+    else:
+        print("Invalid mode. Use 'f' for file or 't' for text.")
+        sys.exit(1)
+
     if arguments[3] == "e":
-        text = insert_key(text, 10)
-        encrypted_text = encrypt(text, key)
-        if len(arguments) > 4 and arguments[4] == "o":
-            with open(arguments[5], "w") as file:
-                file.write(encrypted_text)
+        encrypted = encrypt(text, key)
+        if len(arguments) == 4:
+            print(encrypted)
         else:
-            print(encrypted_text)
-
-    if arguments[3] == "d":
-        decrypted_text = decrypt(text, key)
-        if len(arguments) > 4 and arguments[4] == "o":
-            with open(arguments[5], "w") as file:
-                file.write(decrypted_text)
+            with open(arguments[4], "w") as file:
+                file.write(encrypted)
+    elif arguments[3] == "d":
+        decrypted = decrypt(text, key)
+        if len(arguments) == 4:
+            print(decrypted)
         else:
-            print(decrypted_text)
+            with open(arguments[4], "w") as file:
+                file.write(decrypted)
+    else:
+        print("Invalid mode. Use 'e' for encryption or 'd' for decryption.")
+        sys.exit(1)
 
-    if len(arguments) > 4 and arguments[4] == "o":
-        with open(arguments[5], "w") as file:
-            file.write(encrypted_text)
-        print(encrypted_text)
+    if len(arguments) == 5:
+        # save the output to a file
+        with open(arguments[4], "w") as file:
+            file.write(encrypted)
