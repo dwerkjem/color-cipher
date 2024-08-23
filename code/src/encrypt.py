@@ -17,6 +17,32 @@ import unicodedata
 
 values = [
     " ",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
     "a",
     "b",
     "c",
@@ -43,7 +69,7 @@ values = [
     "x",
     "y",
     "z",
-    "N",
+    "\n",
     "0",
     "1",
     "2",
@@ -57,12 +83,39 @@ values = [
     ".",
     ",",
     "`",
-    "S",  # Start of key
-    "E",  # End of key
+    "!",
+    "?",
+    "'",
+    '"',
+    ":",
+    ";",
+    "-",
+    "(",
+    ")",
+    "[",
+    "]",
+    "{",
+    "}",
+    "<",
+    ">",
+    "+",
+    "=",
+    "&",
+    "%",
+    "$",
+    "#",
+    "@",
+    "*",
+    "/",
+    "\\",
+    "|",
+    "_",
+    "NEW-KEY",
+    "END-KEY",
 ]
 
 
-def chunker(text):
+def chukker(text):
     """
     Split the text into characters and return a list of chunks.
     """
@@ -134,8 +187,8 @@ def encrypt(text, key):
     """
     Encrypt the text using a key grid.
     """
-    key_chunks = list(chunker(key))
-    text_chunks = list(chunker(text))
+    key_chunks = list(chukker(key))
+    text_chunks = list(chukker(text))
 
     # Fit the key into the text
     key_expanded = expand_key(key_chunks, text_chunks)
