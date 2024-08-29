@@ -7,7 +7,7 @@ Usage: python make_grid.py
 import numpy as np
 import matplotlib.pyplot as plt
 
-from values import get_value as list_of_values
+from resorces.values import get_value as list_of_values
 
 # List of values provided
 values = list_of_values()

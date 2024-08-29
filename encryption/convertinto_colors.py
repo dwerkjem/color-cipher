@@ -1,7 +1,7 @@
 import numpy as np
 import math
 
-from values import get_value as list_of_values
+from resorces.values import get_value as list_of_values
 
 
 from typing import Generator
