@@ -1,12 +1,18 @@
-import numpy as np
-import math
+"""
+this module is responsible for converting the text into colors
+"""
 
-from resorces.values import get_value as list_of_values
 
-
+import sys
 from typing import Generator
 
-def chukker(text:str) -> Generator[str]:
+import numpy as np
+sys.path.append('/home/derek/DEV/color-cipher')
+
+from resources.values import get_value as list_of_values
+
+
+def chunk_text(text:str) -> Generator[str, None, None]:
     """
     Split the text into chunks
     """
