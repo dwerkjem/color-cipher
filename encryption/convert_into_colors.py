@@ -1,7 +1,7 @@
 import math
 from PIL import Image
-import numpy as np
 import resources.values
+import os
 
 values = resources.values.get_value()
 
@@ -61,3 +61,44 @@ for i in range(len(chars)):
 
 image = vec3_table_to_image(colors, (512, 512))
 image.save('Grid.png')
+
+# make a dictionary of the colors
+color_dict = {}
+for i in range(len(chars)):
+    color_dict[chars[i]] = colors[i]
+
+def convert_to_colors(text:str):
+    """
+    Converts a string to a list of colors.
+    
+    :param text: The input text.
+    :return: List of colors.
+    """
+    colors = []
+    if len(text) % 2 != 0:
+        text += values[0]
+    for char_combo in [text[i:i+2] for i in range(0, len(text), 2)]:
+        colors.append(color_dict[char_combo])
+
+    return colors
+
+def convert_to_image(text:str, image_size:list[int],file , background_color=(0, 0, 0),):
+    """
+    Converts a string to an image of a specified size.
+    
+    :param text: The input text.
+    :param image_size: Tuple indicating the desired output image size (width, height).
+    :param background_color: Background color as an RGB tuple.
+    :return: PIL Image object.
+    """
+    
+    colors = convert_to_colors(text)
+    image = vec3_table_to_image(colors, image_size, background_color)
+    if os.path.exists("out") == False:
+        os.mkdir("out")
+    if file == None:
+        image.show()
+    elif file.endswith('.png'):
+        image.save("out/"+file)
+    else:
+        image.save("out/"+file + '.png')
