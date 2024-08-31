@@ -150,4 +150,4 @@ If you need help or have any questions, feel free to open an issue or reach out 
 
 ---
 
-Thank you for your contributions! 🎉
+Thank you for your contributions! 
