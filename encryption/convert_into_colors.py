@@ -154,3 +154,12 @@ def convert_to_text_from_file(file: str) -> str:
     """
     image = Image.open(file)
     return convert_to_text(image)
+
+def make_all_chars_image():
+    """
+    Creates an image with all possible character combinations.
+    """
+    text = "".join(chars)
+    convert_to_image(text, "all_chars.png")
+
+make_all_chars_image()
