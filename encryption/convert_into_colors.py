@@ -2,16 +2,33 @@ import math
 from PIL import Image
 import resources.values
 import os
+import itertools
 
 # Load the values
 values = resources.values.get_value()
 
 # Generate color and character mappings
 MAX_I = 255
-colors = []
 num_colors = len(values) ** 2
-JUMP = MAX_I // round(num_colors ** (1 / 3))
 
+# Calculate grid size based on num_colors
+grid_size = math.ceil(num_colors ** (1 / 3))  # Always round up to ensure enough colors
+
+# Generate evenly spread colors using a 3D grid
+def generate_even_colors(grid_size, max_value):
+    step = max_value // (grid_size - 1) if grid_size > 1 else max_value
+    colors = [(r * step, g * step, b * step) for r, g, b in itertools.product(range(grid_size), repeat=3)]
+    return colors
+
+colors = generate_even_colors(grid_size, MAX_I)
+
+# Ensure the number of colors matches the number of character pairs
+if len(colors) < num_colors:
+    raise ValueError("Generated fewer colors than required. Adjust the grid size or number of values.")
+elif len(colors) > num_colors:
+    colors = colors[:num_colors]  # Trim excess colors
+
+# Generate character combinations
 def char_combos():
     chars = []
     for i in values:
@@ -20,17 +37,6 @@ def char_combos():
     return chars
 
 chars = char_combos()
-red, green, blue = 0, 0, 0
-
-# Map characters to colors
-for i in range(len(chars)):
-    red = (red + JUMP) % (MAX_I + 1)
-    if red == 0:
-        green = (green + JUMP) % (MAX_I + 1)
-        if green == 0:
-            blue = (blue + JUMP) % (MAX_I + 1)
-
-    colors.append((red, green, blue))
 
 # Create color dictionary
 color_dict = {chars[i]: colors[i] for i in range(len(chars))}
@@ -38,19 +44,24 @@ color_dict = {chars[i]: colors[i] for i in range(len(chars))}
 # Create reverse color dictionary for efficient lookup in convert_to_text
 reverse_color_dict = {v: k for k, v in color_dict.items()}
 
-def find_optimal_dimensions_and_pad_text(text: str) -> tuple[str, tuple[int, int]]:
+def find_optimal_dimensions_and_pad_text(text: str, min_dimension: int = None) -> tuple[str, tuple[int, int]]:
     """
     Finds the optimal dimensions (width, height) for an image that can fit all colors,
-    by finding the closest factors of num_colors. If no factor greater than 50 is found,
+    by finding the closest factors of num_colors. If no factor greater than min_dimension is found,
     pads the text with spaces until suitable dimensions are found.
 
     :param text: The input text.
+    :param min_dimension: The minimum dimension for width and height. If None, it will be dynamically calculated.
     :return: The padded text and a tuple (width, height) representing the dimensions of the image.
     """
     num_colors = len(text) // 2  # Each color represents 2 characters
+
+    if min_dimension is None:
+        min_dimension = max(10, int(math.sqrt(num_colors) // 2))  # Dynamically set min_dimension
+
     while True:
         for width in range(int(math.sqrt(num_colors)), 0, -1):
-            if num_colors % width == 0 and width > 50:
+            if num_colors % width == 0 and width >= min_dimension and num_colors // width >= min_dimension:
                 height = num_colors // width
                 return text, (width, height)
         # No suitable factor found, pad the text with spaces

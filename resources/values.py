@@ -97,9 +97,14 @@ values = [
     "\\",
     "|",
     "_",
-    "NEW-KEY",
-    "END-KEY",
+    "^",
+    "~",
+    # end of ASCII
+    "¡", # 0xA1 used to denote the start of the new key in the encrypted text
+    "¢", # 0xA2 used to denote the end of the new key in the encrypted text
 ]
+
+
 
 
 def get_value() -> list[str]:
